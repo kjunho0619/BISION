@@ -20,7 +20,7 @@
 
 <body class="gray-bg">
 
-
+김준호 수정
     <div class="middle-box text-center animated fadeInDown">
         <h1>404</h1>
         <h3 class="font-bold">Page Not Found</h3>
