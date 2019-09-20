@@ -58,6 +58,7 @@
                             <li><a href="dashboard_3">Dashboard v.3</a></li>
                             <li><a href="dashboard_4_1">Dashboard v.4</a></li>
                             <li><a href="dashboard_5">Dashboard v.5 </a></li>
+                            <li><a href="testSearch">API Test</a></li>
                         </ul>
                     </li>
                     <li>

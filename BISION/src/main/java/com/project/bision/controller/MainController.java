@@ -1,8 +1,17 @@
 package com.project.bision.controller;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.mashape.unirest.http.exceptions.UnirestException;
+import com.project.bision.utilll.APIExplorer;
+import com.project.bision.utilll.Sample1;
+import com.project.bision.utilll.newAPI;
 
 
 @Controller
@@ -605,5 +614,19 @@ public class MainController {
 	@RequestMapping(value = "/widgets", method = {RequestMethod.GET,RequestMethod.POST})
 	public String widgets() {
 		return "widgets";
+	}
+	@RequestMapping(value = "/testSearch", method = {RequestMethod.GET,RequestMethod.POST})
+	public String testSearch() {
+		return "testSearch";
+	}
+	@RequestMapping(value = "keywordSearch", method = { RequestMethod.GET, RequestMethod.POST })
+	public String replyDelete(String searchNaver) throws UnirestException, IOException, GeneralSecurityException, ParseException {
+		APIExplorer searchAPI = new APIExplorer();		
+		searchAPI.searchKey(searchNaver); //�굹�씠��蹂� �긽���쟻�씤鍮꾩쑉(媛��옣�넂�� �굹�씠��媛� 100�씠�씪怨� 媛��젙) , �궓��鍮꾩쑉
+		newAPI newsSearchAPI = new newAPI();
+		newsSearchAPI.SearchKeyword(searchNaver);
+		Sample1 searchKeyword = new Sample1(); //pc,mobile�겢由� �넻怨�
+		searchKeyword.searchKeyword(searchNaver);
+		return "testSearch";
 	}
 }
