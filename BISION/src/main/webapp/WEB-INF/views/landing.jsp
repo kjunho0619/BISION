@@ -22,7 +22,7 @@
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
 </head>
-<body id="page-top" class="landing-page no-skin-config">
+<body id="page-top" class="landing-page no-skin_config">
 <div class="navbar-wrapper">
         <nav class="navbar navbar-default navbar-fixed-top navbar-expand-md" role="navigation">
             <div class="container">

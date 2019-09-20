@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="md-skin fixed-nav no-skin-config">
+<body class="md_skin fixed-nav no-skin_config">
 
 <div id="wrapper">
 
@@ -205,8 +205,8 @@
                     <li><a href="ecommerce_product_list">Products list</a></li>
                     <li><a href="ecommerce_product">Product edit</a></li>
                     <li><a href="ecommerce_product_detail">Product detail</a></li>
-                    <li><a href="ecommerce-cart">Cart</a></li>
-                    <li><a href="ecommerce-orders">Orders</a></li>
+                    <li><a href="ecommerce_cart">Cart</a></li>
+                    <li><a href="ecommerce_orders">Orders</a></li>
                     <li><a href="ecommerce_payments">Credit Card form</a></li>
                 </ul>
             </li>
@@ -391,12 +391,12 @@
                     <br/><small>Example view</small></h2>
 
                     <p>
-                        If you want to apply Material Design Skin, all you need to do is to add 'md-skin' class to your open body tag, like this:
+                        If you want to apply Material Design Skin, all you need to do is to add 'md_skin' class to your open body tag, like this:
 
                     </p>
                     <pre class="text-left">
 
-&lt;body class="md-skin"&gt;&lt;/body&gt;
+&lt;body class="md_skin"&gt;&lt;/body&gt;
                     </pre>
                     <p>
                         Additional in current demo we also enable fixed option for navbar and sidebar - more about fixed options you can find in documentation.

@@ -125,7 +125,7 @@
             </div>
             <div class="setings-item ultra-skin">
                     <span class="skin-name ">
-                        <a href="md-skin" class="md-skin">
+                        <a href="md_skin" class="md_skin">
                             Material Design
                         </a>
                     </span>

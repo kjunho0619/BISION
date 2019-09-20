@@ -204,8 +204,8 @@
                         <li><a href="ecommerce_product_list">Products list</a></li>
                         <li><a href="ecommerce_product">Product edit</a></li>
                         <li><a href="ecommerce_product_detail">Product detail</a></li>
-                        <li><a href="ecommerce-cart">Cart</a></li>
-                        <li><a href="ecommerce-orders">Orders</a></li>
+                        <li><a href="ecommerce_cart">Cart</a></li>
+                        <li><a href="ecommerce_orders">Orders</a></li>
                         <li><a href="ecommerce_payments">Credit Card form</a></li>
                     </ul>
                 </li>
