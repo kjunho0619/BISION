@@ -5,6 +5,51 @@
 
 <!-- 게시판 처리 SQL -->
 <mapper namespace="com.project.bision.dao.MainMapper">
-
+	<select id="getCpyMonthCount" parameterType="int" resultType="CpyMonthCountVO">
+		SELECT a.cpykeywordseq, b.cpykeyword, a.pccount, a.mobilecount
+		  FROM cpymonthcount a, cpykeyword b
+		WHERE 1=1
+		    AND a.cpykeywordseq = b.cpykeywordseq
+		    AND a.cpykeywordseq = #{cpykeywordseq}
+	</select>
+	
+	<select id="getCpyRliKeyword" parameterType="int" resultType="CpyRliKeywordVO">
+		SELECT a.cpyrlikeywordseq, b. cpykeyword, a.rlikeyword
+		FROM cpyrlikeyword a, cpykeyword b 
+		WHERE 1=1
+		AND a.cpykeywordseq = b.cpykeywordseq
+		AND a.cpykeywordseq = #{cpykeywordseq}
+	</select>
+	
+	<select id="getCpyGenderCount" parameterType="int" resultType="CpyGenderCountVO">
+		SELECT a.cpykeywordseq, b. cpykeyword, (a.malepcusercount +a.malemobileusercount) as malecount, (a.femalepcusercount + a.femalemobileusercount) as femalecount 
+		FROM cpygendercount a, cpykeyword b 
+		WHERE 1=1
+		AND a.cpykeywordseq = b.cpykeywordseq
+		AND a.cpykeywordseq = #{cpykeywordseq}
+	</select>
+	
+	<select id="getCpyYearCount" parameterType="int" resultType="CpyYearCountVO">
+		SELECT a.cpykeywordseq, b. cpykeyword, to_char(a.month,'YYYY-MM') as month, (a.pcmonthcount + a.mobilemonthcount) as totalcount
+		FROM cpyyearcount a, cpykeyword b 
+		WHERE 1=1
+		AND a.cpykeywordseq = b.cpykeywordseq
+		AND a.cpykeywordseq = #{cpykeywordseq}
+	</select>
+	
+	<select id="getCpyAgeCount" parameterType="int" resultType="CpyAgeCountVO">
+		SELECT a.cpykeywordseq, b. cpykeyword, a.age, a.pcmonthcount, a.mobilemonthcount
+		FROM cpyagecount a, cpykeyword b 
+		WHERE 1=1
+		AND a.cpykeywordseq = b.cpykeywordseq
+		AND a.cpykeywordseq = #{cpykeywordseq}
+	</select>
+	
+	<select id="getCpyKeyword" parameterType="String" resultType="CpyKeywordVO">
+		SELECT cpykeywordseq, cpykeyword 
+		FROM cpykeyword 
+		WHERE cpykeyword = #{searchKeyword}
+	</select>
+	
 </mapper>
 

@@ -7,11 +7,18 @@
 		<setting name="logImpl" value="LOG4J"/>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
-
 	<typeAliases>
 		<typeAlias type="com.project.bision.vo.NewsInfoVO" alias="NewsInfoVO" />
+		<typeAlias type="com.project.bision.vo.CpyMonthCountVO" alias="CpyMonthCountVO" />
+		<typeAlias type="com.project.bision.vo.CpyRliKeywordVO" alias="CpyRliKeywordVO" />
+		<typeAlias type="com.project.bision.vo.CpyGenderCountVO" alias="CpyGenderCountVO" />
+		<typeAlias type="com.project.bision.vo.CpyYearCountVO" alias="CpyYearCountVO" />
+		<typeAlias type="com.project.bision.vo.CpyAgeCountVO" alias="CpyAgeCountVO" />
+		<typeAlias type="com.project.bision.vo.CpyKeywordVO" alias="CpyKeywordVO" />
+		<typeAlias type="com.project.bision.vo.UserVO" alias="UserVO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/mainMapper.xml" />
+		<mapper resource="mapper/userMapper.xml" />
 	</mappers>
 </configuration>

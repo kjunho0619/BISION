@@ -1,485 +1,262 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INSPINIA | FAQ</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <title>BISION > FAQ</title>
+   
+   <link href="css/bootstrap.min.css" rel="stylesheet">
+   <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+   
+   <!-- c3 Charts -->
+    <link href="css/plugins/c3/c3.min.css" rel="stylesheet">
+   
+   <!-- orris -->
+   <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+   
+   <!-- FooTable -->
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+   
+   <link href="css/animate.css" rel="stylesheet">
+   <link href="css/style.css" rel="stylesheet">
+   
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:500,700&display=swap&subset=korean" rel="stylesheet">
 </head>
 
-<body>
+<style>
+font{
+	font-family: 'Noto Sans KR', sans-serif; 
+}
+</style>
 
-    <div id="wrapper">
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element">
-                        <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">David Williams</span>
-                            <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
-                        </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a class="dropdown-item" href="profile">Profile</a></li>
-                            <li><a class="dropdown-item" href="contacts">Contacts</a></li>
-                            <li><a class="dropdown-item" href="mailbox">Mailbox</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="login">Logout</a></li>
-                        </ul>
-                    </div>
-                    <div class="logo-element">
-                        IN+
-                    </div>
-                </li>
-                <li>
-                    <a href="index"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="index">Dashboard v.1</a></li>
-                        <li><a href="dashboard_2">Dashboard v.2</a></li>
-                        <li><a href="dashboard_3">Dashboard v.3</a></li>
-                        <li><a href="dashboard_4_1">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5">Dashboard v.5 </a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="layouts"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="graph_flot">Flot Charts</a></li>
-                        <li><a href="graph_morris">Morris.js Charts</a></li>
-                        <li><a href="graph_rickshaw">Rickshaw Charts</a></li>
-                        <li><a href="graph_chartjs">Chart.js</a></li>
-                        <li><a href="graph_chartist">Chartist</a></li>
-                        <li><a href="c3">c3 charts</a></li>
-                        <li><a href="graph_peity">Peity Charts</a></li>
-                        <li><a href="graph_sparkline">Sparkline Charts</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="mailbox"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning float-right">16/24</span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="mailbox">Inbox</a></li>
-                        <li><a href="mail_detail">Email view</a></li>
-                        <li><a href="mail_compose">Compose email</a></li>
-                        <li><a href="email_template">Email templates</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="metrics"><i class="fa fa-pie-chart"></i> <span class="nav-label">Metrics</span>  </a>
-                </li>
-                <li>
-                    <a href="widgets"><i class="fa fa-flask"></i> <span class="nav-label">Widgets</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Forms</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="form_basic">Basic form</a></li>
-                        <li><a href="form_advanced">Advanced Plugins</a></li>
-                        <li><a href="form_wizard">Wizard</a></li>
-                        <li><a href="form_file_upload">File Upload</a></li>
-                        <li><a href="form_editors">Text Editor</a></li>
-                        <li><a href="form_autocomplete">Autocomplete</a></li>
-                        <li><a href="form_markdown">Markdown</a></li>
-                    </ul>
-                </li>
-                <li class="active">
-                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">App Views</span>  <span class="float-right label label-primary">SPECIAL</span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="contacts">Contacts</a></li>
-                        <li><a href="profile">Profile</a></li>
-                        <li><a href="profile_2">Profile v.2</a></li>
-                        <li><a href="contacts_2">Contacts v.2</a></li>
-                        <li><a href="projects">Projects</a></li>
-                        <li><a href="project_detail">Project detail</a></li>
-                        <li><a href="activity_stream">Activity stream</a></li>
-                        <li><a href="teams_board">Teams board</a></li>
-                        <li><a href="social_feed">Social feed</a></li>
-                        <li><a href="clients">Clients</a></li>
-                        <li><a href="full_height">Outlook view</a></li>
-                        <li><a href="vote_list">Vote list</a></li>
-                        <li><a href="file_manager">File manager</a></li>
-                        <li><a href="calendar">Calendar</a></li>
-                        <li><a href="issue_tracker">Issue tracker</a></li>
-                        <li><a href="blog">Blog</a></li>
-                        <li><a href="article">Article</a></li>
-                        <li class="active"><a href="faq">FAQ</a></li>
-                        <li><a href="timeline">Timeline</a></li>
-                        <li><a href="pin_board">Pin board</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="search_results">Search results</a></li>
-                        <li><a href="lockscreen">Lockscreen</a></li>
-                        <li><a href="invoice">Invoice</a></li>
-                        <li><a href="login">Login</a></li>
-                        <li><a href="login_two_columns">Login v.2</a></li>
-                        <li><a href="forgot_password">Forget password</a></li>
-                        <li><a href="register">Register</a></li>
-                        <li><a href="404">404 Page</a></li>
-                        <li><a href="500">500 Page</a></li>
-                        <li><a href="empty_page">Empty page</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Miscellaneous</span><span class="label label-info float-right">NEW</span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="toastr_notifications">Notification</a></li>
-                        <li><a href="nestable_list">Nestable list</a></li>
-                        <li><a href="agile_board">Agile board</a></li>
-                        <li><a href="timeline_2">Timeline v.2</a></li>
-                        <li><a href="diff">Diff</a></li>
-                        <li><a href="pdf_viewer">PDF viewer</a></li>
-                        <li><a href="i18support">i18 support</a></li>
-                        <li><a href="sweetalert">Sweet alert</a></li>
-                        <li><a href="idle_timer">Idle timer</a></li>
-                        <li><a href="truncate">Truncate</a></li>
-                        <li><a href="password_meter">Password meter</a></li>
-                        <li><a href="spinners">Spinners</a></li>
-                        <li><a href="spinners_usage">Spinners usage</a></li>
-                        <li><a href="tinycon">Live favicon</a></li>
-                        <li><a href="google_maps">Google maps</a></li>
-                        <li><a href="datamaps">Datamaps</a></li>
-                        <li><a href="social_buttons">Social buttons</a></li>
-                        <li><a href="code_editor">Code editor</a></li>
-                        <li><a href="modal_window">Modal window</a></li>
-                        <li><a href="clipboard">Clipboard</a></li>
-                        <li><a href="text_spinners">Text spinners</a></li>
-                        <li><a href="forum_main">Forum view</a></li>
-                        <li><a href="validation">Validation</a></li>
-                        <li><a href="tree_view">Tree view</a></li>
-                        <li><a href="loading_buttons">Loading buttons</a></li>
-                        <li><a href="chat_view">Chat view</a></li>
-                        <li><a href="masonry">Masonry</a></li>
-                        <li><a href="tour">Tour</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="typography">Typography</a></li>
-                        <li><a href="icons">Icons</a></li>
-                        <li><a href="draggable_panels">Draggable Panels</a></li> <li><a href="resizeable_panels">Resizeable Panels</a></li>
-                        <li><a href="buttons">Buttons</a></li>
-                        <li><a href="video">Video</a></li>
-                        <li><a href="tabs_panels">Panels</a></li>
-                        <li><a href="tabs">Tabs</a></li>
-                        <li><a href="notifications">Notifications & Tooltips</a></li>
-                        <li><a href="helper_classes">Helper css classes</a></li>
-                        <li><a href="badges_labels">Badges, Labels, Progress</a></li>
-                    </ul>
-                </li>
+    <!-- Morris -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
 
-                <li>
-                    <a href="grid_options"><i class="fa fa-laptop"></i> <span class="nav-label">Grid options</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Tables</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="table_basic">Static Tables</a></li>
-                        <li><a href="table_data_tables">Data Tables</a></li>
-                        <li><a href="table_foo_table">Foo Tables</a></li>
-                        <li><a href="jq_grid">jqGrid</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">E-commerce</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="ecommerce_products_grid">Products grid</a></li>
-                        <li><a href="ecommerce_product_list">Products list</a></li>
-                        <li><a href="ecommerce_product">Product edit</a></li>
-                        <li><a href="ecommerce_product_detail">Product detail</a></li>
-                        <li><a href="ecommerce_cart">Cart</a></li>
-                        <li><a href="ecommerce_orders">Orders</a></li>
-                        <li><a href="ecommerce_payments">Credit Card form</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="basic_gallery">Lightbox Gallery</a></li>
-                        <li><a href="slick_carousel">Slick Carousel</a></li>
-                        <li><a href="carousel">Bootstrap Carousel</a></li>
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+    
+    <!-- ChartJS-->
+    <script src="js/plugins/chartJs/Chart.min.js"></script>
+    
+     <!-- FooTable -->
+    <script src="js/plugins/footable/footable.all.min.js"></script>
+    
+     <!-- d3 and c3 charts -->
+    <script src="js/plugins/d3/d3.min.js"></script>
+    <script src="js/plugins/c3/c3.min.js"></script>
 
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li>
-                            <a href="#">Third Level <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
+<body class="top-navigation">
 
-                            </ul>
-                        </li>
-                        <li><a href="#">Second Level Item</a></li>
-                        <li>
-                            <a href="#">Second Level Item</a></li>
-                        <li>
-                            <a href="#">Second Level Item</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="css_animation"><i class="fa fa-magic"></i> <span class="nav-label">CSS Animations </span><span class="label label-info float-right">62</span></a>
-                </li>
-                <li class="landing_link">
-                    <a target="_blank" href="landing"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning float-right">NEW</span></a>
-                </li>
-                <li class="special_link">
-                    <a href="package"><i class="fa fa-database"></i> <span class="nav-label">Package</span></a>
-                </li>
-            </ul>
+   <div id="wrapper">
+      <div id="page-wrapper" class="gray-bg">
+         <div class="row border-bottom white-bg">
+            <nav class="navbar navbar-expand-lg navbar-static-top"
+               role="navigation">
 
-        </div>
-    </nav>
+               <a href="homeForm" class="navbar-brand" style="padding-top : 5px; padding-bottom : 5px;"><img src="img/BISION_logo_final_final.png"></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse"
+                  data-target="#navbar" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <i class="fa fa-reorder"></i>
+               </button>
 
-        <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-        <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" action="search_results">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                </div>
-            </form>
-        </div>
-            <ul class="nav navbar-top-links navbar-right">
-                <li>
-                    <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a class="dropdown-item float-left" href="profile">
-                                    <img alt="image" class="rounded-circle" src="img/a7.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <small class="float-right">46h ago</small>
-                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a class="dropdown-item float-left" href="profile">
-                                    <img alt="image" class="rounded-circle" src="img/a4.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="float-right text-navy">5h ago</small>
-                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a class="dropdown-item float-left" href="profile">
-                                    <img alt="image" class="rounded-circle" src="img/profile.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="float-right">23h ago</small>
-                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a href="mailbox" class="dropdown-item">
-                                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="mailbox" class="dropdown-item">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                    <span class="float-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <a href="profile" class="dropdown-item">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="float-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <a href="grid_options" class="dropdown-item">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="float-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a href="notifications" class="dropdown-item">
-                                    <strong>See All Alerts</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
+               <div class="navbar-collapse collapse" id="navbar">
+                  <ul class="nav navbar-nav mr-auto">
+                     <li class="active"><a aria-expanded="false" role="button"
+                        href="homeForm"> 메인 페이지 </a></li>
+                     <li class="dropdown"><a aria-expanded="false" role="button"
+                        href="homeForm #features">기술소개</a></li>
+                     <li class="dropdown"><a aria-expanded="false" role="button"
+                        href="homeForm #workflow">업데이트</a></li>
+                     <li class="dropdown"><a aria-expanded="false" role="button"
+                        href="homeForm #pricing">가격</a></li>
+                     <li class="dropdown"><a aria-expanded="false" role="button" href="homeForm #customerSupport" class="dropdown-toggle" data-toggle="dropdown">고객지원</a>
+                         <ul role="menu" class="dropdown-menu">
+                                  <li><a href="faqForm" style="text-align: center;">FAQ</a></li>
+                                  <li><a href="qnaForm" style="text-align: center;">Q&A</a></li>
+                              </ul>
+                     </li>
 
-
-                <li>
-                    <a href="login">
-                        <i class="fa fa-sign-out"></i> Log out
-                    </a>
-                </li>
-            </ul>
-
-        </nav>
-        </div>
-            <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-sm-4">
+                  </ul>
+                  <ul class="nav navbar-top-links navbar-right">
+                     <li><a href="login"> <i class="fa fa-sign-out"></i> Logout</a></li>
+                  </ul>
+               </div>
+            </nav>
+         </div>
+         
+		 <!-- 내용 시작 -->
+         <div class="wrapper wrapper-content">
+            <div class="container">
+            <div class="row wrapper border-bottom white-bg page-heading" >
+                <div class="col-sm-4" >
                     <h2>FAQ</h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index">Home</a>
+                            <a href="homeForm">Home</a>
+                           	&nbsp;<a>></a>&nbsp;
+                            <a>고객지원</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <strong>Frequently asked questions</strong>
+                            <strong>자주 묻는 질문</strong>
                         </li>
                     </ol>
                 </div>
+                
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <a href="" class="btn btn-primary btn-sm">Add question</a>
+                        <a href="" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> 질문 추가하기</a>
                     </div>
-                </div>
-            </div>
-            <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
-                <div class="col-lg-12">
-
-
+                </div>  
+            </div> 
+            
+           	<div class="wrapper wrapper-content animated fadeInRight">
+           	
+            <!-- <div class="row">
+				<div class="col-sm-12" >  <div class="col-sm-12" style="background-color: white;">
+                      
                         <div class="ibox-content m-b-sm border-bottom">
                             <div class="text-center p-lg">
-                                <h2>If you don't find the answer to your question</h2>
-                                <span>add your question by selecting </span>
-                                <button title="Create new cluster" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span class="bold">Add question</span></button> button
+                                <h2>또 다른 질문을 추가하고 싶으시다면</h2>
+                                <span>우측 상단에</span>
+                                <button title="Create new cluster" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span class="bold">질문 추가하기</span></button> 
+                                <span>버튼을 클릭해주세요.</span>
                             </div>
-                        </div>
-
-                        <div class="faq-item">
+                        </div>  
+                                  	
+            	</div>
+            	
+            </div>  -->
+            <!-- <br> -->
+               
+             <!-- FAQ 1 -->
+            <div class="row">
+            	<div class="col-sm-12" >
+            	   <div class="faq-item">
                             <div class="row">
-                                <div class="col-md-7">
-                                    <a data-toggle="collapse" href="#faq1" class="faq-question">What It a long established fact that a reader ?</a>
-                                    <small>Added by <strong>Alex Smith</strong> <i class="fa fa-clock-o"></i> Today 2:40 pm - 24.06.2014</small>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="small font-bold">Robert Nowak</span>
-                                    <div class="tag-list">
-                                        <span class="tag-item">General</span>
-                                        <span class="tag-item">License</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-right">
-                                    <span class="small font-bold">Voting </span><br/>
-                                    42
-                                </div>
+                            	<div class="col-md-1" style="padding: 0px 0px 0px 0px; text-align: center;">
+                            		<a style="font-size: 30px;">Q</a>
+                            	</div>
+                                <div class="col-md-10" style="padding: 10px 0px;">
+                                    <a data-toggle="collapse" href="#faq1" class="faq-question">BISION의 활용으로 기업과 사용자가 얻게 되는 이익은 무엇인가요 ?</a>
                             </div>
+                            <div class="col-md-1">
+                            	<i class="fa fa-chevron-down" style="padding: 15px 0px 15px 30px;"></i>
+                            </div>
+                         </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="faq1" class="panel-collapse collapse ">
                                         <div class="faq-answer">
                                             <p>
-                                                It is a long established fact that a reader will be distracted by the
-                                                readable content of a page when looking at its layout. The point of
-                                                using Lorem Ipsum is that it has a more-or-less normal distribution of
-                                                letters, as opposed to using 'Content here, content here', making it
-                                                look like readable English.
+                                               BISION은 소셜네트워크, 뉴스 등을 통해 정보를 수집합니다.
+	 									<br><br>수집된 정보의 내용에 따라 기업에 긍정적인 영향을 주는 경우도 있고 부정적인 영향을 주는 경우도 있을 수 있습니다. BISION에서는 자체적인 기준에 따라 해당 영향력의 수준을 측정하여 사용자에게 알기 쉬운 형태로 전달합니다.
+										<br><br>사용자는 발생할 수 있는 문제에 대해 미리 감지하여 대응할 수 있으며 사건의 본질에도 쉽게 접근할 수 있습니다.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                       
+                        <!-- FAQ 2 -->
                         <div class="faq-item">
                             <div class="row">
-                                <div class="col-md-7">
-                                    <a data-toggle="collapse" href="#faq2" class="faq-question">Many desktop publishing packages ?</a>
-                                    <small>Added by <strong>Mark Nowak</strong> <i class="fa fa-clock-o"></i> Today 3:30 pm - 11.06.2014</small>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="small font-bold">Robert Nowak</span>
-                                    <div class="tag-list">
-                                        <span class="tag-item">General</span>
-                                        <span class="tag-item">License</span>
-                                        <span class="tag-item">CC</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-right">
-                                    <span class="small font-bold">Voting </span><br/>
-                                    24
-                                </div>
+                            	<div class="col-md-1" style="padding: 0px 0px 0px 0px; text-align: center;">
+                            		<a style="font-size: 30px;">Q</a>
+                            	</div>
+                                <div class="col-md-10" style="padding: 10px 0px;">
+                                    <a data-toggle="collapse" href="#faq2" class="faq-question">가장 신속하고 편리하게 안내를 받고자 합니다. 어디로 연락하면 되나요 ?</a>
                             </div>
+                            <div class="col-md-1">
+                            	<i class="fa fa-chevron-down" style="padding: 15px 0px 15px 30px;"></i>
+                            </div>
+                         </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div id="faq2" class="panel-collapse collapse">
+                                    <div id="faq2" class="panel-collapse collapse ">
                                         <div class="faq-answer">
                                             <p>
-                                                Many desktop publishing packages and web page editors now use Lorem
-                                                Ipsum as their default model text, and a search for 'lorem ipsum' will
-                                                uncover many web sites still in their infancy. Various versions have
-                                                evolved over the years, sometimes by accident, sometimes on purpose
-                                                (injected humour and the like).
+                                               	평가의뢰, 평가수수료, 사용방법 등 기타 관련 안내를 원하시는 분은 
+                                               	<br>Q&A게시판에 글을 올려주시거나 대표번호(010-4359-4998) 또는 영업팀(010-7475-5425)로 문의하여 주시기 바랍니다. 
+                                               	<br><br>신속하고 정확하게 안내해 드리겠습니다.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- FAQ 3 -->
                         <div class="faq-item">
+                            <div class="row">
+                            	<div class="col-md-1" style="padding: 0px 0px 0px 0px; text-align: center;">
+                            		<a style="font-size: 30px;">Q</a>
+                            	</div>
+                                <div class="col-md-10" style="padding: 10px 0px;">
+                                    <a data-toggle="collapse" href="#faq3" class="faq-question">기업평가 컨설팅 의뢰 시 소요 기간 및 비용은 어떻게 되나요 ?</a>
+                            </div>
+                            <div class="col-md-1">
+                            	<i class="fa fa-chevron-down" style="padding: 15px 0px 15px 30px;"></i>
+                            </div>
+                         </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div id="faq3" class="panel-collapse collapse ">
+                                        <div class="faq-answer">
+                                            <p>
+                                               	기초 평가에 필요한 평가기간은 신규 업체의 경우  20영업일 이내를 기준으로 하며,
+                                               	<br> 신속한 평가기초자료 조사, 인터뷰 및 실사 등 평가 진행에 원활한 협조가 이루어질 경우 실제 소요기간은 단축될 수 있습니다. 
+                                               	<br>컨설팅 수수료는 당사의 수수료 체계에 의거한 수수료가 적용됩니다.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ 4 -->
+                        <div class="faq-item">
+                            <div class="row">
+                            	<div class="col-md-1" style="padding: 0px 0px 0px 0px; text-align: center;">
+                            		<a style="font-size: 30px;">Q</a>
+                            	</div>
+                                <div class="col-md-10" style="padding: 10px 0px;">
+                                    <a data-toggle="collapse" href="#faq4" class="faq-question">서비스 불편사항 접수는 어디서 할 수 있나요 ?</a>
+                            </div>
+                            <div class="col-md-1">
+                            	<i class="fa fa-chevron-down" style="padding: 15px 0px 15px 30px;"></i>
+                            </div>
+                         </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div id="faq4" class="panel-collapse collapse ">
+                                        <div class="faq-answer">
+                                            <p>
+                                               	데스크탑으로 접속한 경우 웹페이지에 있는 QnA메뉴를 통해 접수할 수 있습니다. 
+                                               	<br>또는 영업팀 대표번호(010-7475-5425)로 문의하여 주시기 바랍니다.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                <!--         <div class="faq-item">
                             <div class="row">
                                 <div class="col-md-7">
                                     <a data-toggle="collapse" href="#faq3" class="faq-question">Ipsum generators on the Internet tend ?</a>
@@ -649,8 +426,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="faq-item">
+                        </div> -->
+                        <!-- <div class="faq-item">
                             <div class="row">
                                 <div class="col-md-7">
                                     <a data-toggle="collapse" href="#faq8" class="faq-question">Lorem Ipsum, you need to be sure there isn't ?</a>
@@ -682,8 +459,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="faq-item">
+                        </div> -->
+                        <!-- <div class="faq-item">
                             <div class="row">
                                 <div class="col-md-7">
                                     <a data-toggle="collapse" href="#faq9" class="faq-question">There are many variations of passages ?</a>
@@ -715,61 +492,26 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> -->
                         </div>
-                    </div>
-                </div>
+            </div>  
+            <br><br><br>
             </div>
-        <div class="footer">
+         </div>
+         </div>
+         <!-- 내용 끝 -->
+         <div class="footer">
             <div class="float-right">
-                10GB of <strong>250GB</strong> Free.
+               <!-- 10GB of <strong>250GB</strong> Free. -->
             </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2018
+               <strong>Copyright</strong> BISION &copy; 2019
             </div>
-        </div>
+         </div>
 
-        </div>
-        </div>
+      </div>
+   </div>
 
-    <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-
-    <script>
-        $(document).ready(function(){
-
-            $('#loading-example-btn').click(function () {
-                btn = $(this);
-                simpleLoad(btn, true)
-
-                // Ajax example
-//                $.ajax().always(function () {
-//                    simpleLoad($(this), false)
-//                });
-
-                simpleLoad(btn, false)
-            });
-        });
-
-        function simpleLoad(btn, state) {
-            if (state) {
-                btn.children().addClass('fa-spin');
-                btn.contents().last().replaceWith(" Loading");
-            } else {
-                setTimeout(function () {
-                    btn.children().removeClass('fa-spin');
-                    btn.contents().last().replaceWith(" Refresh");
-                }, 2000);
-            }
-        }
-    </script>
 </body>
 
 </html>

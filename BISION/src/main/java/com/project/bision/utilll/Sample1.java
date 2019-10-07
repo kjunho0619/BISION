@@ -44,13 +44,6 @@ public class Sample1 {
 	   JSONArray keywordList = (JSONArray) jsonObject.get("keywordList");
 	   
 	   System.out.println(keywordList.toString());
-	   
-	   
-	   
-	   
-	   
-	   
-
 
 }
 }
