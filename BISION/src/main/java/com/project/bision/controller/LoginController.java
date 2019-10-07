@@ -1,5 +1,6 @@
 package com.project.bision.controller;
 
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,8 @@ public class LoginController {
 
 	@Autowired
 	UserService service;
-
+		
+	
 	@RequestMapping(value = "loginForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginForm() {
 		return "login";
@@ -76,6 +78,17 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginUser");
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "signUpForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String signUpForm() {
+		return "signUp";
+	}
+	
+	@RequestMapping(value = "emailConfirm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String emailConfirm() {
+		
+		return "signUp";
 	}
 	
 }
