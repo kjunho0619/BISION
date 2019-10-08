@@ -30,7 +30,7 @@ public class MainController {
 	@Autowired
 	MainService service;
 	
-	@RequestMapping(value = "/main", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/mainForm", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(Model model) {
 		return "main";
 	}
@@ -57,12 +57,12 @@ public class MainController {
 					//성별 검색량
 					CpyGenderCountVO cpyGenderCount = service.getCpyGenderCount(cpykeywordseq);
 					model.addAttribute("cpyGenderCount", cpyGenderCount);
-	
+					
 					
 					//1년 검색량
 					ArrayList<CpyYearCountVO> cpyYearCountList = service.getCpyYearCount(cpykeywordseq);
 					model.addAttribute("cpyYearCountList", cpyYearCountList);
-	
+					
 					
 					//나이 검색량
 					ArrayList<CpyAgeCountVO> cpyAgeCountList = service.getCpyAgeCount(cpykeywordseq);
@@ -76,7 +76,7 @@ public class MainController {
 	
 	@RequestMapping(value = "keywordSearch", method = { RequestMethod.GET, RequestMethod.POST })
 	public String replyDelete(String searchNaver) throws UnirestException, IOException, GeneralSecurityException, ParseException {
-		APIExplorer searchAPI = new APIExplorer();		
+		APIExplorer searchAPI = new APIExplorer();
 		searchAPI.searchKey(searchNaver);
 		newAPI newsSearchAPI = new newAPI();
 		newsSearchAPI.SearchKeyword(searchNaver);

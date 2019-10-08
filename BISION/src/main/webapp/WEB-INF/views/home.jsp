@@ -56,39 +56,9 @@ font{
 <script>
 
     IMP.init('imp94733196');
-    $(function(){
 
-//window.onload와 같은 역할을 함
-
-
-        //$('#month').click(requestpay);
-        //$('#year').click(requestpay);
-       // $('#month').on('click',
-
-                //마우스 액션(jquery)
-
-               // function requestpay(){
-            
-
-
-    });
-
-    function requestpay(){
-        //액션에 의해 호출되는 메소드
-        //console.log('dasdasd');
-
-        //var itemname = document.getElementById('itemname');
-        //var itemname = $("#month").val();
+    function requestpay(itemname, itemprice){
         
-        //var itemname =$(this).attr('data-value1');
-        //var itemprice =$(this).attr('data-value2');
-        //var itemprice = $("#month").val();
-		
-        var itemname = $("#month").attr('data-value1');
-        var itemprice = $("#month").attr('data-value2');
-        
-        //console.log($(this).attr('data-value1'));
-
         IMP.request_pay({
 
             pg : 'html5_inicis',
@@ -139,6 +109,9 @@ font{
                         <!-- <li><a class="nav-link page-scroll" href="#workflow"><font>업데이트</font></a></li> -->
                         <li><a class="nav-link page-scroll" href="#pricing"><font>가격</font></a></li>
                         <li><a class="nav-link page-scroll" href="#customerSupport"><font>고객지원</font></a></li>
+                        <c:if test="${sessionScope.loginUser.userdivision == 2}"> 
+                        	<li><a class="nav-link" href="mainForm"><font>기업평가화면 이동</font></a></li>
+                        </c:if>
                     </ul>
                     <ul class="nav navbar-top-links navbar-right">
                     	<!-- 로그인 전 -->
@@ -372,12 +345,12 @@ font{
                     </li>
                     <c:if test="${sessionScope.loginUser.userdivision == 1}"> 
 	                    <li class="plan-action">
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay();" id="month"  data-value1="MONTH PLAN" data-value2="1">결제하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('MONTH PLAN', '1');" id="month"  data-value1="MONTH PLAN" data-value2="1">결제하기</a>
 	                    </li>
                     </c:if>
 					<c:if test="${sessionScope.loginUser.userdivision == 2}"> 
 	                    <li class="plan-action">
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay();" id="month"  data-value1="MONTH PLAN" data-value2="1">연장하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('MONTH PLAN', '1');" id="month"  data-value1="MONTH PLAN" data-value2="1">연장하기</a>
 	                    </li>
                     </c:if>
                 </ul>
@@ -417,12 +390,12 @@ font{
                     </li>
                     <c:if test="${sessionScope.loginUser.userdivision == 1 }"> 
 	                    <li>
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay();" id="year"  data-value1="YEAR PLAN" data-value2="2">결제하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('YEAR PLAN', '2');" id="year"  data-value1="YEAR PLAN" data-value2="2">결제하기</a>
 	                    </li>
                     </c:if>
                     <c:if test="${sessionScope.loginUser.userdivision == 2 }"> 
 	                    <li>
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay();" id="year"  data-value1="YEAR PLAN" data-value2="2">연장하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('YEAR PLAN', '2');" id="year"  data-value1="YEAR PLAN" data-value2="2">연장하기</a>
 	                    </li>
                     </c:if>
                 </ul>
@@ -478,7 +451,6 @@ font{
                             Andrew Williams
                         </div>
                         <small class="text-muted">Company X from California</small>
-                        <a class="btn btn-primary btn-xs" href="faqForm">Signup</a>
                     </div>
                 </div>
             </div>
@@ -516,12 +488,17 @@ font{
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-    </div>
-
+			<div class="row">
+				<div class="col-lg-4">
+					<a class="btn btn-primary btn-xs" href="faqForm">FAQ</a>
+				</div>
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<a class="btn btn-primary btn-xs" href="qnaForm">Q&A</a>
+				</div>
+			</div>
+		</div>
 </section>
 
 <section class="features">
@@ -562,6 +539,7 @@ font{
             </div>
         </div>
     </div>
+</section>
 
 <section id="contact" class="gray-section contact">
     <div class="container">
