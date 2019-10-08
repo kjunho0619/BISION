@@ -25,9 +25,6 @@
 	
 	<link href="css/animate.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
-	
-
-
 </head>
     <!-- Mainly scripts -->
     <script src="js/jquery-3.1.1.min.js"></script>
