@@ -100,7 +100,7 @@ font{
         <nav class="navbar navbar-default navbar-fixed-top navbar-expand-md" role="navigation">
             <div class="container">
                 <a class="navbar-brand" href="homeForm"><img src="img/BISION_logo_final_final.png"></a>
-                <div class="navbar-header page-scroll">
+                <div class="navbar-header pa11ge-scroll">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
                         <i class="fa fa-bars"></i>
                     </button>

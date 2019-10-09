@@ -17,6 +17,8 @@
 		<typeAlias type="com.project.bision.vo.CpyKeywordVO" alias="CpyKeywordVO" />
 		<typeAlias type="com.project.bision.vo.UserVO" alias="UserVO" />
 		<typeAlias type="com.project.bision.vo.CpyStaokVO" alias="CpyStaokVO" />
+		<typeAlias type="com.project.bision.vo.CpyRliMonthCountVO" alias="CpyRliMonthCountVO" />
+		<typeAlias type="com.project.bision.vo.CpyRliMonthCountVO" alias="CpyRliGenderCountVO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/mainMapper.xml" />

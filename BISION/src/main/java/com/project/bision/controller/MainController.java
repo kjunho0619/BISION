@@ -24,7 +24,9 @@ import com.project.bision.vo.CpyGenderCountVO;
 import com.project.bision.vo.CpyKeywordVO;
 import com.project.bision.vo.CpyMonthCountVO;
 import com.project.bision.vo.CpyNewsInfoVO;
+import com.project.bision.vo.CpyRliGenderCountVO;
 import com.project.bision.vo.CpyRliKeywordVO;
+import com.project.bision.vo.CpyRliMonthCountVO;
 import com.project.bision.vo.CpyStaokVO;
 import com.project.bision.vo.CpyYearCountVO;
 
@@ -52,6 +54,7 @@ public class MainController {
 					
 					int cpykeywordseq = cpyKeyword.getCpykeywordseq();
 					System.out.println("cpykeywordseq : " + cpykeywordseq);
+					model.addAttribute("cpykeywordseq", cpykeywordseq);
 					
 					//기업 최근달 검색수
 					CpyMonthCountVO cpymonthcount = service.getCpyMonthCount(cpykeywordseq);
@@ -142,4 +145,57 @@ public class MainController {
 		searchKeyword.searchKeyword(searchNaver);
 		return "testSearch";
 	}
+	
+	@RequestMapping(value = "cpysearchNewsDetali", method = {RequestMethod.GET,RequestMethod.POST})
+	public String cpysearchNewsDetali(int news_no, Model model) {
+		System.out.println(news_no);
+		
+		CpyNewsInfoVO detailNews = service.getDetailNews(news_no);
+		model.addAttribute("detailNews", detailNews);
+		System.out.println(detailNews);
+		
+		return "cpysearchNewsDetali";
+	}	
+	
+	@RequestMapping(value = "cpyRlisearch", method = {RequestMethod.GET,RequestMethod.POST})
+	public String cpyRlisearch(String rlikeyword, int cpykeywordseq, Model model) {
+		System.out.println(rlikeyword);
+		System.out.println(cpykeywordseq);
+		
+		model.addAttribute("rlikeyword", rlikeyword);
+		
+		//기업 연관검색 키워드 검색
+		CpyRliKeywordVO cpyRilKeyword = service.getCpyRliKeyword(rlikeyword, cpykeywordseq);//예외처리
+		
+		if(cpyRilKeyword != null){
+			int cpyRilKeywordseq = cpyRilKeyword.getCpyrlikeywordseq();
+			model.addAttribute("cpyRilKeywordseq", cpyRilKeywordseq);
+			
+			//기업 최근달 검색수
+			CpyRliMonthCountVO cpyrlimonthcount = service.getCpyRliMonthCount(cpyRilKeywordseq, cpykeywordseq);
+			model.addAttribute("cpymonthcount", cpyrlimonthcount);
+			
+			//성별 검색량
+			CpyRliGenderCountVO cpyrliGenderCount = service.getCpyRliGenderCount(cpyRilKeywordseq, cpykeywordseq);
+			model.addAttribute("cpyGenderCount", cpyrliGenderCount);
+			
+			
+/*			//1년 검색량
+			ArrayList<CpyYearCountVO> cpyYearCountList = service.getCpyYearCount(cpykeywordseq);
+			model.addAttribute("cpyYearCountList", cpyYearCountList);
+			
+			
+			//나이 검색량
+			ArrayList<CpyAgeCountVO> cpyAgeCountList = service.getCpyAgeCount(cpykeywordseq);
+			model.addAttribute("cpyAgeCountList", cpyAgeCountList);*/
+			
+		}else{
+			model.addAttribute("noKeyword", "noKeyword");
+		}
+		
+		return "cpyRlisearch";
+	}	
+	
+	
+	
 }
