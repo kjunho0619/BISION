@@ -15,4 +15,9 @@ public class FaqController {
 		return "faq";
 	}
 	
+	@RequestMapping(value = "qnaboard", method = {RequestMethod.GET,RequestMethod.POST})
+	public String qnaboard(Locale locale, Model model) {
+		return "qnaboard";
+	}
+	
 }

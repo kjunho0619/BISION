@@ -35,7 +35,21 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+	}
+/* .img-cover{
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   background-color: rgba(255, 255, 255, 0.4);                                                                 
+   z-index:1;
 }
+
+	.stockImg {
+	    position: relative;
+	    background-image: url(./img/icon/line-chart-256.png);                                                               
+	    height: 100vh;
+	    background-size: cover;
+	} */
 </style>
 </head>
 <!-- Mainly scripts -->
@@ -260,8 +274,8 @@
 										</a>
 									</div>
 								</div>
-								<div class="ibox-content">
-									<div style="height: 250px; text-align: center;">
+								<div class="ibox-content" style="vertical-align: middle;">
+									<div style="height: 250px; text-align: center;");  >
 										<c:choose>
 											<c:when test="${noKeyword != null}">
 												<h1 style="padding-top: 60px;">검색된 결과가 없습니다.</h1>
@@ -273,8 +287,8 @@
 													</div>
 												</c:if>
 												<c:if test="${cpyStaok.sign eq '+'}">
-													<h1><strong>주식</strong></h1>
-													<div style="padding-top: 60px;">
+													<!-- <h1><strong>주식</strong></h1> -->
+													<div style="padding: 90px 0;">
 														<!-- <i class="fa fa-line-chart" style="font-size: 225px;"></i> -->
 														<strong style="font-size: 30px; color:red;">${cpyStaok.stockvalue}</strong>&nbsp;&nbsp;
 														<font style="font-size: 24px;">${cpyStaok.country}</font>
@@ -360,17 +374,17 @@
 										</a>
 									</div>
 								</div>
-								<div class="ibox-content">
-									<div style="height: 250px;text-align: center;">
+								<div class="ibox-content" >
+									<div style="height: 250px;text-align: center; padding: 30px 0;">
 										<c:choose>
 											<c:when test="${noKeyword != null}">
 												<h1 style="padding-top: 100px;">검색된 결과가 없습니다.</h1>
 											</c:when>
 											<c:otherwise>
-												<h1><strong>종합평가</strong></h1>
-												<table class="table table-hover">
+												<!-- <h1><strong>종합평가</strong></h1> -->
+												<table class="table table-hover" style="padding: 10px 0; margin: 0;'">
 													<thead>
-														<tr>
+														<tr style="background-color: #dcdcdc">
 															<th>No</th>
 															<th>가중치</th>
 															<th>값</th>
@@ -413,7 +427,7 @@
 																</c:otherwise>
 															</c:choose>
 														</tr>
-														<tr>
+														<tr style="border-bottom: 1px; border-color: #dcdcdc;">
 															<td>4</td>
 															<td><span class="pie">종합평가</span></td>
 															<c:choose>

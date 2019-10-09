@@ -27,9 +27,6 @@
 font{
 	font-family: 'Noto Sans KR', sans-serif; 
 }
-.colorAtag:hover{
-	color: #1ab394;
-}
 .colorFont:hover{
 	color: #1ab394;
 }
@@ -50,6 +47,10 @@ font{
 			$("#clickEvent").attr()
 		});
 	});
+	
+	function faqFromMove(value){
+		location.href="faqForm?value=" + value;
+	}
 </script>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
@@ -92,6 +93,11 @@ font{
 
 
     };
+    
+    function loginFrom(){
+    	alert("로그인을 해야 사용이 가능합니다.");
+    	location.href="loginForm";
+    }
 </script>
 
 <body id="page-top" class="landing-page no-skin_config">
@@ -113,17 +119,18 @@ font{
                         <li><a class="nav-link page-scroll" href="#pricing"><font>가격</font></a></li>
                         <li><a class="nav-link page-scroll" href="#customerSupport"><font>고객지원</font></a></li>
                         <c:if test="${sessionScope.loginUser.userdivision == 2}"> 
-                        	<li><a class="nav-link" href="mainForm"><font>기업평가화면 이동</font></a></li>
+                        	<li><a class="nav-link" href="mainForm"><font style="color: /* #ffd1d1 */ #ffcd42">기업평가</font></a></li>
                         </c:if>
                     </ul>
                     <ul class="nav navbar-top-links navbar-right">
                     	<!-- 로그인 전 -->
                     	<c:if test="${sessionScope.loginUser == null }"> 
-                	     	<li><a href="loginForm"><i class="fa fa-user"></i><font class="colorFont">로그인</font></a></li>
+                	     	<li><a href="loginForm"><i class="fa fa-user-o"></i><font class="colorFont">로그인</font></a></li>
                 	  	 	<li><a href="signUpForm"><i class="fa fa-sign-in"></i><font class="colorFont">회원가입</font></a></li>
                 		</c:if>
+                		<!-- 로그인 후 -->
                 		<c:if test="${sessionScope.loginUser != null }"> 
-                	     	<li><a href="myPageForm"><i class="fa fa-user-o"></i><font class="colorFont">마이페이지</font></a></li>
+                	     	<li><a href="checkPassword"><i class="fa fa-user"></i><font class="colorFont">마이페이지</font></a></li>
                 	  	 	<li><a href="logout"><i class="fa fa-sign-out"></i><font class="colorFont">로그아웃</font></a></li>
                 		</c:if>
                 	</ul>
@@ -148,7 +155,6 @@ font{
                     <img src="img/landing/laptop.png" alt="laptop"/>
                 </div>
             </div>
-            <!-- Set background for slide in css -->
             <div class="header-back one"></div>
 
         </div>
@@ -158,7 +164,6 @@ font{
                     <h2>빅데이터 시대의 </h2><h1>새로운 기업 분석 서비스</h1>
                 </div>
             </div>
-            <!-- Set background for slide in css -->
             <div class="header-back two"></div>
         </div>
     </div>
@@ -180,14 +185,12 @@ font{
         <div class="col-sm-4">
             <i class="fa fa-database" style="font-size: 27px; color:#1ab394;"></i>&nbsp&nbsp&nbsp&nbsp&nbsp<font style="font-size: 27px;">기업분석</font>
             <p><br>분석을 원하는 기업을 입력하면 기업에 대한 비정형 정보를 분석이 가능한 정형화된 데이터로 바꾸어, 사회현상을 분석할 수 있는 기초 자료로 제공합니다.</p>
-            <!-- <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p> -->
         </div>
         <div class="col-sm-2">
     	</div>
         <div class="col-sm-4">
             <i class="fa fa-cubes" style="font-size: 27px; color:#1ab394;"></i>&nbsp&nbsp&nbsp&nbsp&nbsp<font style="font-size: 27px;">키워드 분석</font>
             <p><br>기업 분석뿐만 아니라 원하는 키워드를 검색, 분석하여 정형화된 데이터로 바꿔, 다양한 곳에서 활용 가능한 기초 자료로 제공합니다.</p>
-            <!-- <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p> -->
         </div>
         <div class="col-sm-1">
     	</div>
@@ -259,11 +262,9 @@ font{
     </div>
     <div class="row features-block">
         <div class="col-lg-6 features-text wow fadeInLeft">
-            <!-- <small>INSPINIA</small> -->
             <h1> </h1>
             <font style="font-size: 20px;">반응형 웹 디자인</font><br><br>
             <p>디바이스에 따른 다양한 해상도 지원과 반응형 웹 디자인을 통해 유저 인터페이스를 최적화시켰습니다. BISION은 규격화 되지 않은 자유로운 기기 선택을 가능하게 해 언제, 어디서든 정보를 검색할 수 있다는 편리함을 제공할 것입니다. </p>
-            <!-- <a href="" class="btn btn-primary">Learn more</a> -->
         </div>
         <div class="col-lg-6 text-right wow fadeInRight">
             <img src="img/landing/dashboard.png" alt="dashboard" class="img-fluid float-right">
@@ -272,7 +273,7 @@ font{
 </section>
 
 <br><br><br><br>
-<section id="pricing" class="pricing">
+<section id="pricing" class="pricing gray-section">
     <div class="container">
         <div class="row m-b-lg">
             <div class="col-lg-12 text-center">
@@ -283,7 +284,7 @@ font{
         </div>
         <div class="row">
             <div class="col-lg-4 wow zoomIn">
-                <ul class="pricing-plan list-unstyled">
+                <ul class="pricing-plan list-unstyled" style="background: white;">
                     <li class="pricing-title">
                       	무료이용
                     </li>
@@ -318,7 +319,7 @@ font{
             </div>
 
             <div class="col-lg-4 wow zoomIn">
-                <ul class="pricing-plan list-unstyled selected">
+                <ul class="pricing-plan list-unstyled selected" style="background: white;">
                     <li class="pricing-title">
                        	월간구독
                     </li>
@@ -346,6 +347,11 @@ font{
                  	<li>
                       	화제기사
                     </li>
+                     <c:if test="${empty sessionScope.loginUser.userdivision}"> 
+	                    <li class="plan-action">
+	                        <a class="btn btn-primary btn-xs" href="javascript:loginFrom()" >결제하기</a>
+	                    </li>
+                    </c:if>
                     <c:if test="${sessionScope.loginUser.userdivision == 1}"> 
 	                    <li class="plan-action">
 	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('MONTH PLAN', '1');" id="month"  data-value1="MONTH PLAN" data-value2="1">결제하기</a>
@@ -360,7 +366,7 @@ font{
             </div>
 
             <div class="col-lg-4 wow zoomIn">
-                <ul class="pricing-plan list-unstyled">
+                <ul class="pricing-plan list-unstyled" style="background: white;">
                     <li class="pricing-title">
                        	연간구독
                     </li>
@@ -391,6 +397,11 @@ font{
                     <li>
                         <strong>추가 이용기간</strong>
                     </li>
+                   <c:if test="${empty sessionScope.loginUser.userdivision}"> 
+	                    <li class="plan-action">
+	                        <a class="btn btn-primary btn-xs" href="javascript:loginFrom()">결제하기</a>
+	                    </li>
+                    </c:if>
                     <c:if test="${sessionScope.loginUser.userdivision == 1 }"> 
 	                    <li>
 	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('YEAR PLAN', '2');" id="year"  data-value1="YEAR PLAN" data-value2="2">결제하기</a>
@@ -448,14 +459,7 @@ font{
                    	</div>
                 </div>
                 <div class="comments-avatar">
-<!--                     <a href="" class="float-left">
-                        <img alt="image" src="img/landing/avatar3.jpg">
-                    </a> -->
                     <div class="media-body">
-                        <!-- <div class="commens-name">
-                            Andrew Williams
-                        </div>
-                        <small class="text-muted">Company X from California</small> -->
                         <a class="btn btn-primary btn-xs" href="javascript:faqFromMove(3);">바로가기</a>
                     </div>
                 </div>
@@ -468,14 +472,7 @@ font{
                    	</div>
                 </div>
                 <div class="comments-avatar">
-<!--                     <a href="" class="float-left">
-                        <img alt="image" src="img/landing/avatar3.jpg">
-                    </a> -->
                     <div class="media-body">
-                        <!-- <div class="commens-name">
-                            Andrew Williams
-                        </div>
-                        <small class="text-muted">Company X from California</small> -->
                         <a class="btn btn-primary btn-xs" href="javascript:faqFromMove(2);">바로가기</a>
                     </div>
                 </div>
@@ -488,14 +485,7 @@ font{
                    	</div>
                 </div>
                 <div class="comments-avatar">
-<!--                     <a href="" class="float-left">
-                        <img alt="image" src="img/landing/avatar3.jpg">
-                    </a> -->
                     <div class="media-body">
-                        <!-- <div class="commens-name">
-                            Andrew Williams
-                        </div>
-                        <small class="text-muted">Company X from California</small> -->
                         <a class="btn btn-primary btn-xs" href="javascript:faqFromMove(4);">바로가기</a>
                     </div>
                 </div>
@@ -520,35 +510,11 @@ font{
         <div class="row justify-content-center">
             <div class="col-lg-5">
               <a href="faqForm"  class="logo-name colorFont" >FAQ</a>
-              <!-- <button type="submit" class="btn btn-primary block full-width m-b" href="faq">바로가기</button> -->
-               <!--  <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-bar-chart big-icon float-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p> -->
             </div>
             <div class="col-lg-5">
             	<a href="qnaForm"  class="logo-name colorFont" >Q&A</a>
-            	<!-- <button type="submit" class="btn btn-primary block full-width m-b" href="qna">바로가기</button> -->
-                <!-- <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-bolt big-icon float-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p> -->
             </div>
         </div>
-      <!--   <div class="row justify-content-center">
-            <div class="col-lg-5 col-lg-offset-1 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-clock-o big-icon float-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-            <div class="col-lg-5 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-users big-icon float-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-        </div> -->
     </div>
 </section>
 
@@ -557,7 +523,6 @@ font{
         <div class="row m-b-lg">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <!-- <h1>Contact Us</h1> -->
                 <img src="img/BISION_logo_165x75.png" alt="BISION_logo" />
                 <p>BISION은 세상을 보고 얻은 정보를 여러분께 전달하겠습니다.</p>
             </div>

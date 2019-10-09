@@ -68,7 +68,6 @@ font{
             <h3>BISION에 오신 것을 환영합니다</h3>
             <p>
             	기업 분석과 키워드 검색 등 BISION만의 <br>다양한 기업 분석 서비스가 준비되어 있습니다.
-                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
             </p>
             <p>기능을 사용하시려면 로그인해주세요.</p>
             <form class="m-t" id="loginForm" method="post" role="form" action="login">
@@ -95,11 +94,11 @@ font{
 					<div class="i-checks" style="text-align: left;">
 						<label> 
 						<input type="checkbox" id="rememberus" name="remember_userId" value="remember" checked='${cookie.loginCookieId != null ? "checked" : ""}'><i></i>&nbsp;&nbsp;&nbsp;
-							로그인 상태 기억하시겠습니까?
+							로그인 상태를 기억하시겠습니까?
 						</label>
 					</div>
 				</div>
-                </div>
+            </div>
 
 			<a href="#"><small>비밀번호를 잊어버리셨나요?</small></a><!-- <br><br> -->
                 <p class="text-muted text-center" style="margin: 8px 0px 5px;"><small>계정이 없으신가요?</small></p>
@@ -131,6 +130,16 @@ font{
 
     <!-- Jquery Validate -->
     <script src="js/plugins/validate/jquery.validate.min.js"></script>
+    
+     <!-- 체크박스 -->
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
 
 </body>
 

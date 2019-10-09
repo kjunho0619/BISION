@@ -94,7 +94,16 @@ font{
 
                   </ul>
                   <ul class="nav navbar-top-links navbar-right">
-                     <li><a href="login"> <i class="fa fa-sign-out"></i> Logout</a></li>
+                     <!-- 로그인 전 -->
+                    	<c:if test="${sessionScope.loginUser == null }"> 
+                	     	<li><a href="loginForm"><i class="fa fa-user-o"></i><font class="colorFont">로그인</font></a></li>
+                	  	 	<li><a href="signUpForm"><i class="fa fa-sign-in"></i><font class="colorFont">회원가입</font></a></li>
+                		</c:if>
+                		<!-- 로그인 후 -->
+                		<c:if test="${sessionScope.loginUser != null }"> 
+                	     	<li><a href="checkPassword"><i class="fa fa-user"></i><font class="colorFont">마이페이지</font></a></li>
+                	  	 	<li><a href="logout"><i class="fa fa-sign-out"></i><font class="colorFont">로그아웃</font></a></li>
+                		</c:if>
                   </ul>
                </div>
             </nav>
@@ -126,30 +135,13 @@ font{
             </div> 
             
            	<div class="wrapper wrapper-content animated fadeInRight">
-           	
-            <!-- <div class="row">
-				<div class="col-sm-12" >  <div class="col-sm-12" style="background-color: white;">
-                      
-                        <div class="ibox-content m-b-sm border-bottom">
-                            <div class="text-center p-lg">
-                                <h2>또 다른 질문을 추가하고 싶으시다면</h2>
-                                <span>우측 상단에</span>
-                                <button title="Create new cluster" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span class="bold">질문 추가하기</span></button> 
-                                <span>버튼을 클릭해주세요.</span>
-                            </div>
-                        </div>  
-                                  	
-            	</div>
-            	
-            </div>  -->
-            <!-- <br> -->
-               
+            
              <!-- FAQ 1 -->
             <div class="row">
             	<div class="col-sm-12" >
             	   <div class="faq-item">
                             <div class="row">
-                            	<div class="col-md-1" style="padding: 0px 0px 0px 0px; text-align: center;">
+                            	<div class="col-md-1" style="padding: 0px; text-align: center;">
                             		<a style="font-size: 30px;">Q</a>
                             	</div>
                                 <div class="col-md-10" style="padding: 10px 0px;">
@@ -161,15 +153,30 @@ font{
                          </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div id="faq1" class="panel-collapse collapse ">
-                                        <div class="faq-answer">
-                                            <p>
-                                               BISION은 소셜네트워크, 뉴스 등을 통해 정보를 수집합니다.
-	 									<br><br>수집된 정보의 내용에 따라 기업에 긍정적인 영향을 주는 경우도 있고 부정적인 영향을 주는 경우도 있을 수 있습니다. BISION에서는 자체적인 기준에 따라 해당 영향력의 수준을 측정하여 사용자에게 알기 쉬운 형태로 전달합니다.
-										<br><br>사용자는 발생할 수 있는 문제에 대해 미리 감지하여 대응할 수 있으며 사건의 본질에도 쉽게 접근할 수 있습니다.
-                                            </p>
-                                        </div>
-                                    </div>
+                                	<c:choose>
+                                		<c:when test="${value eq '1'}">
+                                			<div id="faq1" class="panel-collapse">
+		                                		<div class="faq-answer">
+		                                            <p>
+		                                               BISION은 소셜네트워크, 뉴스 등을 통해 정보를 수집합니다.
+			 									<br><br>수집된 정보의 내용에 따라 기업에 긍정적인 영향을 주는 경우도 있고 부정적인 영향을 주는 경우도 있을 수 있습니다. BISION에서는 자체적인 기준에 따라 해당 영향력의 수준을 측정하여 사용자에게 알기 쉬운 형태로 전달합니다.
+												<br><br>사용자는 발생할 수 있는 문제에 대해 미리 감지하여 대응할 수 있으며 사건의 본질에도 쉽게 접근할 수 있습니다.
+		                                            </p>
+		                                        </div>
+		                                    </div>
+                                		</c:when>
+                                		<c:otherwise>
+                                			<div id="faq1" class="panel-collapse collapse ">
+                                			<div class="faq-answer">
+		                                            <p>
+		                                               BISION은 소셜네트워크, 뉴스 등을 통해 정보를 수집합니다.
+			 									<br><br>수집된 정보의 내용에 따라 기업에 긍정적인 영향을 주는 경우도 있고 부정적인 영향을 주는 경우도 있을 수 있습니다. BISION에서는 자체적인 기준에 따라 해당 영향력의 수준을 측정하여 사용자에게 알기 쉬운 형태로 전달합니다.
+												<br><br>사용자는 발생할 수 있는 문제에 대해 미리 감지하여 대응할 수 있으며 사건의 본질에도 쉽게 접근할 수 있습니다.
+		                                            </p>
+		                                        </div>
+		                                    </div>
+                                		</c:otherwise>
+                                	</c:choose>
                                 </div>
                             </div>
                         </div>
@@ -177,7 +184,7 @@ font{
                         <!-- FAQ 2 -->
                         <div class="faq-item">
                             <div class="row">
-                            	<div class="col-md-1" style="padding: 0px 0px 0px 0px; text-align: center;">
+                            	<div class="col-md-1" style="padding: 0px; text-align: center;">
                             		<a style="font-size: 30px;">Q</a>
                             	</div>
                                 <div class="col-md-10" style="padding: 10px 0px;">
@@ -189,15 +196,31 @@ font{
                          </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div id="faq2" class="panel-collapse collapse ">
-                                        <div class="faq-answer">
-                                            <p>
-                                               	평가의뢰, 평가수수료, 사용방법 등 기타 관련 안내를 원하시는 분은 
-                                               	<br>Q&A게시판에 글을 올려주시거나 대표번호(010-4359-4998) 또는 영업팀(010-7475-5425)로 문의하여 주시기 바랍니다. 
-                                               	<br><br>신속하고 정확하게 안내해 드리겠습니다.
-                                            </p>
-                                        </div>
-                                    </div>
+                                	<c:choose>
+                                		<c:when test="${value eq '2'}">
+		                                     <div id="faq2" class="panel-collapse">
+		                                        <div class="faq-answer">
+		                                            <p>
+		                                               	평가의뢰, 평가수수료, 사용방법 등 기타 관련 안내를 원하시는 분은 
+		                                               	<br>Q&A게시판에 글을 올려주시거나 대표번호(010-4359-4998) 또는 영업팀(010-7475-5425)로 문의하여 주시기 바랍니다. 
+		                                               	<br><br>신속하고 정확하게 안내해 드리겠습니다.
+		                                            </p>
+		                                        </div>
+		                                    </div>                               			
+                                		</c:when>
+                                		<c:otherwise>
+		                                    <div id="faq2" class="panel-collapse collapse ">
+		                                        <div class="faq-answer">
+		                                            <p>
+		                                               	평가의뢰, 평가수수료, 사용방법 등 기타 관련 안내를 원하시는 분은 
+		                                               	<br>Q&A게시판에 글을 올려주시거나 대표번호(010-4359-4998) 또는 영업팀(010-7475-5425)로 문의하여 주시기 바랍니다. 
+		                                               	<br><br>신속하고 정확하게 안내해 드리겠습니다.
+		                                            </p>
+		                                        </div>
+		                                    </div>                                		
+                                		</c:otherwise>
+                                	</c:choose>
+
                                 </div>
                             </div>
                         </div>
@@ -205,7 +228,7 @@ font{
                         <!-- FAQ 3 -->
                         <div class="faq-item">
                             <div class="row">
-                            	<div class="col-md-1" style="padding: 0px 0px 0px 0px; text-align: center;">
+                            	<div class="col-md-1" style="padding: 0px; text-align: center;">
                             		<a style="font-size: 30px;">Q</a>
                             	</div>
                                 <div class="col-md-10" style="padding: 10px 0px;">
@@ -217,15 +240,31 @@ font{
                          </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div id="faq3" class="panel-collapse collapse ">
-                                        <div class="faq-answer">
-                                            <p>
-                                               	기초 평가에 필요한 평가기간은 신규 업체의 경우  20영업일 이내를 기준으로 하며,
-                                               	<br> 신속한 평가기초자료 조사, 인터뷰 및 실사 등 평가 진행에 원활한 협조가 이루어질 경우 실제 소요기간은 단축될 수 있습니다. 
-                                               	<br>컨설팅 수수료는 당사의 수수료 체계에 의거한 수수료가 적용됩니다.
-                                            </p>
-                                        </div>
-                                    </div>
+                                       <c:choose>
+	                                		<c:when test="${value eq '3'}">
+			                                    <div id="faq3" class="panel-collapse">
+			                                        <div class="faq-answer">
+			                                            <p>
+			                                               	기초 평가에 필요한 평가기간은 신규 업체의 경우  20영업일 이내를 기준으로 하며,
+			                                               	<br> 신속한 평가기초자료 조사, 인터뷰 및 실사 등 평가 진행에 원활한 협조가 이루어질 경우 실제 소요기간은 단축될 수 있습니다. 
+			                                               	<br>컨설팅 수수료는 당사의 수수료 체계에 의거한 수수료가 적용됩니다.
+			                                            </p>
+			                                        </div>
+			                                    </div>	                                			
+	                                		</c:when>
+	                                		<c:otherwise>
+			                                    <div id="faq3" class="panel-collapse collapse ">
+			                                        <div class="faq-answer">
+			                                            <p>
+			                                               	기초 평가에 필요한 평가기간은 신규 업체의 경우  20영업일 이내를 기준으로 하며,
+			                                               	<br> 신속한 평가기초자료 조사, 인터뷰 및 실사 등 평가 진행에 원활한 협조가 이루어질 경우 실제 소요기간은 단축될 수 있습니다. 
+			                                               	<br>컨설팅 수수료는 당사의 수수료 체계에 의거한 수수료가 적용됩니다.
+			                                            </p>
+			                                        </div>
+			                                    </div>	                                		
+	                                		</c:otherwise>
+                                		</c:choose>
+
                                 </div>
                             </div>
                         </div>
@@ -233,7 +272,7 @@ font{
                         <!-- FAQ 4 -->
                         <div class="faq-item">
                             <div class="row">
-                            	<div class="col-md-1" style="padding: 0px 0px 0px 0px; text-align: center;">
+                            	<div class="col-md-1" style="padding: 0px; text-align: center;">
                             		<a style="font-size: 30px;">Q</a>
                             	</div>
                                 <div class="col-md-10" style="padding: 10px 0px;">
@@ -245,256 +284,33 @@ font{
                          </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div id="faq4" class="panel-collapse collapse ">
-                                        <div class="faq-answer">
-                                            <p>
-                                               	데스크탑으로 접속한 경우 웹페이지에 있는 QnA메뉴를 통해 접수할 수 있습니다. 
-                                               	<br>또는 영업팀 대표번호(010-7475-5425)로 문의하여 주시기 바랍니다.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+									<c:choose>
+										<c:when test="${value eq '4'}">
+											<div id="faq4" class="panel-collapse">
+												<div class="faq-answer">
+													<p>
+														데스크탑으로 접속한 경우 웹페이지에 있는 Q&A메뉴를 통해 접수할 수 있습니다. <br>또는
+														영업팀 대표번호(010-7475-5425)로 문의하여 주시기 바랍니다.
+													</p>
+												</div>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div id="faq4" class="panel-collapse collapse ">
+												<div class="faq-answer">
+													<p>
+														데스크탑으로 접속한 경우 웹페이지에 있는 Q&A메뉴를 통해 접수할 수 있습니다. <br>또는
+														영업팀 대표번호(010-7475-5425)로 문의하여 주시기 바랍니다.
+													</p>
+												</div>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
                             </div>
                         </div>
-                <!--         <div class="faq-item">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <a data-toggle="collapse" href="#faq3" class="faq-question">Ipsum generators on the Internet tend ?</a>
-                                    <small>Added by <strong>Monica Rother</strong> <i class="fa fa-clock-o"></i> Yestorday 7:60 pm - 12.06.2014</small>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="small font-bold">Alex Berg</span>
-                                    <div class="tag-list">
-                                        <span class="tag-item">General</span>
-                                        <span class="tag-item">Web App</span>
-                                        <span class="tag-item">Instruction</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-right">
-                                    <span class="small font-bold">Voting </span><br/>
-                                    22
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="faq3" class="panel-collapse collapse">
-                                        <div class="faq-answer">
-                                            <p>
-                                                Ipsum generators on the Internet tend to repeat predefined chunks as
-                                                necessary, making this the first true generator on the Internet. It uses
-                                                a dictionary of over 200 Latin words, combined with a handful of model
-                                                sentence structures, to generate Lorem Ipsum which looks reasonable. The
-                                                generated Lorem Ipsum is therefore always free from repetition, injected
-                                                humour, or non-characteristic words etc.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <a data-toggle="collapse" href="#faq4" class="faq-question">What Finibus Bonorum et Malorum mean ?</a>
-                                    <small>Added by <strong>Janet North</strong> <i class="fa fa-clock-o"></i> Today 2:43 pm - 22.06.2014</small>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="small font-bold">Robert Nowak</span>
-                                    <div class="tag-list">
-                                        <span class="tag-item">Buttons</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-right">
-                                    <span class="small font-bold">Voting </span><br/>
-                                    65
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="faq4" class="panel-collapse collapse">
-                                        <div class="faq-answer">
-                                            <p>
-                                                Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus
-                                                Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written
-                                                in 45 BC. This book is a treatise on the theory of ethics, very popular
-                                                during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum
-                                                dolor sit amet..", comes from a line in section 1.10.32.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <a data-toggle="collapse" href="#faq5" class="faq-question">The standard chunk of Lorem Ipsum used since ?</a>
-                                    <small>Added by <strong>Robert Task</strong> <i class="fa fa-clock-o"></i> Today 1:23 pm - 12.06.2014</small>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="small font-bold">Sandra Smith</span>
-                                    <div class="tag-list">
-                                        <span class="tag-item">General</span>
-                                        <span class="tag-item">License</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-right">
-                                    <span class="small font-bold">Voting </span><br/>
-                                    76
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="faq5" class="panel-collapse collapse">
-                                        <div class="faq-answer">
-                                            <p>
-                                                The standard chunk of Lorem Ipsum used since the 1500s is reproduced
-                                                below for those interested. Sections 1.10.32 and 1.10.33 from "de
-                                                Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact
-                                                original form, accompanied by English versions from the 1914 translation
-                                                by H. Rackham.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <a data-toggle="collapse" href="#faq6" class="faq-question">Contrary to popular belief, Lorem Ipsum ?</a>
-                                    <small>Added by <strong>Monica Smith</strong> <i class="fa fa-clock-o"></i> Today 7:220 pm - 13.06.2014</small>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="small font-bold">Robert Nowak</span>
-                                    <div class="tag-list">
-                                        <span class="tag-item">Love</span>
-                                        <span class="tag-item">CC</span>
-                                        <span class="tag-item">Help</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-right">
-                                    <span class="small font-bold">Voting </span><br/>
-                                    11
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="faq6" class="panel-collapse collapse">
-                                        <div class="faq-answer">
-                                            <p>
-                                                Contrary to popular belief, Lorem Ipsum is not simply random text. It
-                                                has roots in a piece of classical Latin literature from 45 BC, making it
-                                                over 2000 years old. Richard McClintock, a Latin professor at
-                                                Hampden-Sydney College
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <a data-toggle="collapse" href="#faq7" class="faq-question"> Many desktop publishing packages ? </a>
-                                    <small>Added by <strong>Damien Sate</strong> <i class="fa fa-clock-o"></i> Yestorday 4:50 pm - 8.06.2014</small>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="small font-bold">Alex Nowak</span>
-                                    <div class="tag-list">
-                                        <span class="tag-item">International</span>
-                                        <span class="tag-item">What</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-right">
-                                    <span class="small font-bold">Voting </span><br/>
-                                    64
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="faq7" class="panel-collapse collapse">
-                                        <div class="faq-answer">
-                                            <p>
-                                                Many desktop publishing packages and web page editors now use Lorem
-                                                Ipsum as their default model text, and a search for 'lorem ipsum' will
-                                                uncover many web sites still in their infancy. Various versions have
-                                                evolved over the years, sometimes by accident, sometimes on purpose
-                                                (injected humour and the like).
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- <div class="faq-item">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <a data-toggle="collapse" href="#faq8" class="faq-question">Lorem Ipsum, you need to be sure there isn't ?</a>
-                                    <small>Added by <strong>Pablo Sarnoq</strong> <i class="fa fa-clock-o"></i> Today 1:30 am - 1.06.2014</small>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="small font-bold">Natalie Cole</span>
-                                    <div class="tag-list">
-                                        <span class="tag-item">Translations</span>
-                                        <span class="tag-item">CC</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-right">
-                                    <span class="small font-bold">Voting </span><br/>
-                                    10
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="faq8" class="panel-collapse collapse">
-                                        <div class="faq-answer">
-                                            <p>
-                                                Lorem Ipsum, you need to be sure there isn't anything embarrassing
-                                                hidden in the middle of text. All the Lorem Ipsum generators on the
-                                                Internet tend to repeat predefined chunks as necessary, making this the
-                                                first true generator on the Internet. It uses a dictionary of over 200
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- <div class="faq-item">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <a data-toggle="collapse" href="#faq9" class="faq-question">There are many variations of passages ?</a>
-                                    <small>Added by <strong>Monica Smith</strong> <i class="fa fa-clock-o"></i> Today 1:60 pm - 11.06.2014</small>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="small font-bold">Alex Nowak</span>
-                                    <div class="tag-list">
-                                        <span class="tag-item">General</span>
-                                        <span class="tag-item">License</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-right">
-                                    <span class="small font-bold">Voting </span><br/>
-                                    23
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="faq9" class="panel-collapse collapse">
-                                        <div class="faq-answer">
-                                            <p>
-                                                There are many variations of passages of Lorem Ipsum available, but the
-                                                majority have suffered alteration in some form, by injected humour, or
-                                                randomised words which don't look even slightly believable. If you are
-                                                going to use a passage
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        </div>
-            </div>  
+                     </div>
+            	</div>  
             <br><br><br>
             </div>
          </div>
