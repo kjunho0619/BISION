@@ -2,6 +2,11 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.project.bision.dao.QnaDAO" %>
+<%@ page import="com.project.bision.vo.QnaVO" %>
+<%@ page import="java.util.List" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,18 +186,26 @@ font{
                    		<div class="ibox-content border-bottom" style="padding: 15px 20px 0px 20px;  text-align: center;">
 							
                             <table style="margin: 0px;" class="table table-hover " >
+                              <c:forEach var="boardList" items="${qnaList}" varStatus="status">
+                              
                                 <thead>
                                 <tr>
                                     <th style="width: 5%;">번호</th>
                                     <th style="width: 15%;">유형</th>
+                                    <!--  문제종류, ~에 대해서 등  -->
                                     <th style="width: 50%;">제목</th>
-                                    <th style="width: 15%;">상태</th>
+                                    <!-- 질문제목 입력  -->
+                                    <th style="width: 15%;">ID</th>
+                                    <!--  등록자 id -->
                                     <th style="width: 15%;">등록일</th>
+                                  
+                                    <!-- sysdate형태로 입력된 등록일  -->
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>1</td>
+                              		<!-- 1~5열까지 차례로 데이터 가져옴  -->
+                                    <td> ${qnaList.qnaseq} </td>
                                     <td><span class="pie">0.52,1.041</span></td>
                                     <td>Samantha</td>
                                     <td class="text-navy"> <i class="fa fa-level-up"></i> 40% </td>
@@ -213,6 +226,8 @@ font{
                                     <td></td>
                                 </tr>
                                 </tbody>
+                                
+                                </c:forEach>
                             </table>
                         </div> 
                         

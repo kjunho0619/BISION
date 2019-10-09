@@ -16,9 +16,11 @@
 		<typeAlias type="com.project.bision.vo.CpyAgeCountVO" alias="CpyAgeCountVO" />
 		<typeAlias type="com.project.bision.vo.CpyKeywordVO" alias="CpyKeywordVO" />
 		<typeAlias type="com.project.bision.vo.UserVO" alias="UserVO" />
+		<typeAlias type="com.project.bision.vo.QnaVO" alias="QnaVO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/mainMapper.xml" />
 		<mapper resource="mapper/userMapper.xml" />
+		<mapper resource="mapper/qnaMapper.xml" />
 	</mappers>
 </configuration>
