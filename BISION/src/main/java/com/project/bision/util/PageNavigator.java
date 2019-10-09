@@ -1,70 +1,48 @@
 package com.project.bision.util;
 
-/**
- * 게시판 페이징 처리 클래스
- */
 public class PageNavigator {
-	//페이지 관련 정보 
-	private int countPerPage;		//페이지당 글목록 수
-	private int pagePerGroup;		//그룹당 페이지 수 
-	private int currentPage;		//현재 페이지 (최근 글이 1부터 시작)
-	private int totalRecordsCount;	//전체 글 수
-	private int totalPageCount;		//전체 페이지 수
-	private int currentGroup;		//현재 그룹 (최근 그룹이 0부터 시작)
-	private int startPageGroup;		//현재 그룹의 첫 페이지
-	private int endPageGroup;		//현재 그룹의 마지막 페이지
-	private int startRecord;		//전체 레코드 중 현재 페이지 첫 글의 위치 (0부터 시작)
-	
-	/*
-	 * 생성자
-	 */
-	public PageNavigator(int countPerPage, int pagePerGroup, int currentPage, int totalRecordsCount) {
-		//페이지당 글 수, 그룹당 페이지 수, 현재 페이지, 전체 글 수를 전달받음
-		this.countPerPage = countPerPage;
-		this.pagePerGroup = pagePerGroup;
-		this.totalRecordsCount = totalRecordsCount;
-		
-		//전체 페이지 수
-		totalPageCount = (totalRecordsCount + countPerPage - 1) / countPerPage;
+	// 멤버
+	private final int countPerPage = 4;	// 한 페이지당 글개수
+	private final int pagePerGroup = 5;		// 페이지 그룹
+	private int currentPage;		// 현재 페이지
+	private int totalRecordCount; 	// 전체 글 개수
+	private int totalPageCount;		// 총 페이지수
+	private int currentGroup;		// 현재 그룹
+	private int startPageGroup;		// 현재 그룹의 첫 페이지
+	private int endPageGroup;		// 현재 그룹의 마지막 페이지
+	private int startRecord;		// 전체 레코드 중 현재 페이지의 첫 글의 위치
 
-		//전달된 현재 페이지가 1보다 작으면 현재페이지를 1페이지로 지정
-		if (currentPage < 1)	currentPage = 1;
-		//전달된 현재 페이지가 마지막 페이지보다 크면 현재페이지를 마지막 페이지로 지정
-		if (currentPage > totalPageCount)	currentPage = totalPageCount;
+	// srow, erow 계산하지 않고, mybatis의 기능의 RowBounds 사용
+	
+	// constructor
+	public PageNavigator(int currentPage, int totalRecordCount) {
+		this.totalRecordCount =  totalRecordCount;
+		
+		// 전체 글개수 152개라면 ? 총 페이지 16페이지
+		// 전체 글개수 150개라면 ? 총 페이지 15 페이지
+		totalPageCount = (totalRecordCount + countPerPage - 1) / countPerPage;
+		System.out.println("totalPageCount => " + totalPageCount);
+		// 현재 페이지 요청 시 계산
+		if(currentPage < 1) currentPage = 1;
+		if(currentPage > totalPageCount) currentPage = totalPageCount;
 		
 		this.currentPage = currentPage;
-
-		//현재 그룹
+		
+		// 현재 그룹 계산
+		// 내가 4페이지를 보고있다면 4페이지는 몇번 그룹인가? 0번 그룹 (4-1) / 5
 		currentGroup = (currentPage - 1) / pagePerGroup;
 		
-		//현재 그룹의 첫 페이지
+		// 현재 그룹의 첫 페이지
 		startPageGroup = currentGroup * pagePerGroup + 1;
-		//현재 그룹의 마지막 페이지
+		startPageGroup = startPageGroup < 1 ? 1 : startPageGroup;
+
+		// 현재 그룹의 마지막 페이지
 		endPageGroup = startPageGroup + pagePerGroup - 1;
-		//현재 그룹의 마지막 페이지가 전체 페이지 수보다 작으면 전체페이지 수를 마지막으로.
-		endPageGroup = endPageGroup > totalPageCount ? totalPageCount : endPageGroup;
-
-		//전체 레코드 중 현재 페이지 첫 글의 위치
+		endPageGroup = endPageGroup < totalPageCount ? endPageGroup : totalPageCount;
+	
+		// 전체 레코드 중에서 현제 페이지의 첫 글의 위치
 		startRecord = (currentPage - 1) * countPerPage;
-	}
-
-	/*
-	 * Getters and Setters
-	 */
-	public int getCountPerPage() {
-		return countPerPage;
-	}
-
-	public void setCountPerPage(int countPerPage) {
-		this.countPerPage = countPerPage;
-	}
-
-	public int getPagePerGroup() {
-		return pagePerGroup;
-	}
-
-	public void setPagePerGroup(int pagePerGroup) {
-		this.pagePerGroup = pagePerGroup;
+		System.out.println("startRecord " + startRecord);
 	}
 
 	public int getCurrentPage() {
@@ -75,12 +53,12 @@ public class PageNavigator {
 		this.currentPage = currentPage;
 	}
 
-	public int getTotalRecordsCount() {
-		return totalRecordsCount;
+	public int getTotalRecordCount() {
+		return totalRecordCount;
 	}
 
-	public void setTotalRecordsCount(int totalRecordsCount) {
-		this.totalRecordsCount = totalRecordsCount;
+	public void setTotalRecordCount(int totalRecordCount) {
+		this.totalRecordCount = totalRecordCount;
 	}
 
 	public int getTotalPageCount() {
@@ -123,12 +101,19 @@ public class PageNavigator {
 		this.startRecord = startRecord;
 	}
 
+	public int getCountPerPage() {
+		return countPerPage;
+	}
+
+	public int getPagePerGroup() {
+		return pagePerGroup;
+	}
+
 	@Override
 	public String toString() {
 		return "PageNavigator [countPerPage=" + countPerPage + ", pagePerGroup=" + pagePerGroup + ", currentPage="
-				+ currentPage + ", totalRecordsCount=" + totalRecordsCount + ", totalPageCount=" + totalPageCount
+				+ currentPage + ", totalRecordCount=" + totalRecordCount + ", totalPageCount=" + totalPageCount
 				+ ", currentGroup=" + currentGroup + ", startPageGroup=" + startPageGroup + ", endPageGroup="
 				+ endPageGroup + ", startRecord=" + startRecord + "]";
 	}
-	
 }
