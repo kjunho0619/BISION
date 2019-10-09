@@ -30,6 +30,9 @@ font{
 .colorAtag:hover{
 	color: #1ab394;
 }
+.colorFont:hover{
+	color: #1ab394;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -56,39 +59,9 @@ font{
 <script>
 
     IMP.init('imp94733196');
-    $(function(){
 
-//window.onload와 같은 역할을 함
-
-
-        //$('#month').click(requestpay);
-        //$('#year').click(requestpay);
-       // $('#month').on('click',
-
-                //마우스 액션(jquery)
-
-               // function requestpay(){
-            
-
-
-    });
-
-    function requestpay(){
-        //액션에 의해 호출되는 메소드
-        //console.log('dasdasd');
-
-        //var itemname = document.getElementById('itemname');
-        //var itemname = $("#month").val();
+    function requestpay(itemname, itemprice){
         
-        //var itemname =$(this).attr('data-value1');
-        //var itemprice =$(this).attr('data-value2');
-        //var itemprice = $("#month").val();
-		
-        var itemname = $("#month").attr('data-value1');
-        var itemprice = $("#month").attr('data-value2');
-        
-        //console.log($(this).attr('data-value1'));
-
         IMP.request_pay({
 
             pg : 'html5_inicis',
@@ -139,6 +112,9 @@ font{
                         <!-- <li><a class="nav-link page-scroll" href="#workflow"><font>업데이트</font></a></li> -->
                         <li><a class="nav-link page-scroll" href="#pricing"><font>가격</font></a></li>
                         <li><a class="nav-link page-scroll" href="#customerSupport"><font>고객지원</font></a></li>
+                        <c:if test="${sessionScope.loginUser.userdivision == 2}"> 
+                        	<li><a class="nav-link" href="mainForm"><font>기업평가화면 이동</font></a></li>
+                        </c:if>
                     </ul>
                     <ul class="nav navbar-top-links navbar-right">
                     	<!-- 로그인 전 -->
@@ -372,12 +348,12 @@ font{
                     </li>
                     <c:if test="${sessionScope.loginUser.userdivision == 1}"> 
 	                    <li class="plan-action">
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay();" id="month"  data-value1="MONTH PLAN" data-value2="1">결제하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('MONTH PLAN', '1');" id="month"  data-value1="MONTH PLAN" data-value2="1">결제하기</a>
 	                    </li>
                     </c:if>
 					<c:if test="${sessionScope.loginUser.userdivision == 2}"> 
 	                    <li class="plan-action">
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay();" id="month"  data-value1="MONTH PLAN" data-value2="1">연장하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('MONTH PLAN', '1');" id="month"  data-value1="MONTH PLAN" data-value2="1">연장하기</a>
 	                    </li>
                     </c:if>
                 </ul>
@@ -417,12 +393,12 @@ font{
                     </li>
                     <c:if test="${sessionScope.loginUser.userdivision == 1 }"> 
 	                    <li>
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay();" id="year"  data-value1="YEAR PLAN" data-value2="2">결제하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('YEAR PLAN', '2');" id="year"  data-value1="YEAR PLAN" data-value2="2">결제하기</a>
 	                    </li>
                     </c:if>
                     <c:if test="${sessionScope.loginUser.userdivision == 2 }"> 
 	                    <li>
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay();" id="year"  data-value1="YEAR PLAN" data-value2="2">연장하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('YEAR PLAN', '2');" id="year"  data-value1="YEAR PLAN" data-value2="2">연장하기</a>
 	                    </li>
                     </c:if>
                 </ul>
@@ -460,59 +436,67 @@ font{
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>What our partners say</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada. </p>
+                <h1>자주 묻는 질문</h1>
+                <p>회원들이 궁금해하는 주요 질문들을 모았습니다.</p>
             </div>
         </div>
         <div class="row features-block">
             <div class="col-lg-4">
                 <div class="bubble">
-                    "Uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+                	<div style="width: 100%; height: 100%; text-align: center; padding:15px;">
+                  	 "기업평가 컨설팅 의뢰 시<br>소요 기간 및 비용은 어떻게 되나요 ?"
+                   	</div>
                 </div>
                 <div class="comments-avatar">
-                    <a href="" class="float-left">
+<!--                     <a href="" class="float-left">
                         <img alt="image" src="img/landing/avatar3.jpg">
-                    </a>
+                    </a> -->
                     <div class="media-body">
-                        <div class="commens-name">
+                        <!-- <div class="commens-name">
                             Andrew Williams
                         </div>
-                        <small class="text-muted">Company X from California</small>
-                        <a class="btn btn-primary btn-xs" href="faqForm">Signup</a>
+                        <small class="text-muted">Company X from California</small> -->
+                        <a class="btn btn-primary btn-xs" href="javascript:faqFromMove(3);">바로가기</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4">
+                        <div class="col-lg-4">
                 <div class="bubble">
-                    "Uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+                	<div style="width: 100%; height: 100%; text-align: center; padding:15px;">
+                  	 "가장 신속하고 편리하게 안내를 받으려면<br>어디로 연락해야 되나요 ?"
+                   	</div>
                 </div>
                 <div class="comments-avatar">
-                    <a href="" class="float-left">
-                        <img alt="image" src="img/landing/avatar1.jpg">
-                    </a>
+<!--                     <a href="" class="float-left">
+                        <img alt="image" src="img/landing/avatar3.jpg">
+                    </a> -->
                     <div class="media-body">
-                        <div class="commens-name">
+                        <!-- <div class="commens-name">
                             Andrew Williams
                         </div>
-                        <small class="text-muted">Company X from California</small>
+                        <small class="text-muted">Company X from California</small> -->
+                        <a class="btn btn-primary btn-xs" href="javascript:faqFromMove(2);">바로가기</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4">
+                        <div class="col-lg-4">
                 <div class="bubble">
-                    "Uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+                	<div style="width: 100%; height: 100%; text-align: center; padding:15px;">
+                  	 "서비스 불편사항 접수는<br>어디서 할 수 있나요 ?"
+                   	</div>
                 </div>
                 <div class="comments-avatar">
-                    <a href="" class="float-left">
-                        <img alt="image" src="img/landing/avatar2.jpg">
-                    </a>
+<!--                     <a href="" class="float-left">
+                        <img alt="image" src="img/landing/avatar3.jpg">
+                    </a> -->
                     <div class="media-body">
-                        <div class="commens-name">
+                        <!-- <div class="commens-name">
                             Andrew Williams
                         </div>
-                        <small class="text-muted">Company X from California</small>
+                        <small class="text-muted">Company X from California</small> -->
+                        <a class="btn btn-primary btn-xs" href="javascript:faqFromMove(4);">바로가기</a>
                     </div>
                 </div>
             </div>
@@ -529,25 +513,29 @@ font{
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>More and more extra great feautres</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
+                <h1>더 자세히 알고 싶으신가요?</h1>
+                <p>하단에 있는 FAQ와  Q&A페이지를 방문해서 필요한 정보를 찾아보세요.</p>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-5 col-lg-offset-1 features-text">
-                <small>INSPINIA</small>
+            <div class="col-lg-5">
+              <a href="faqForm"  class="logo-name colorFont" >FAQ</a>
+              <!-- <button type="submit" class="btn btn-primary block full-width m-b" href="faq">바로가기</button> -->
+               <!--  <small>INSPINIA</small>
                 <h2>Perfectly designed </h2>
                 <i class="fa fa-bar-chart big-icon float-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
+                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p> -->
             </div>
-            <div class="col-lg-5 features-text">
-                <small>INSPINIA</small>
+            <div class="col-lg-5">
+            	<a href="qnaForm"  class="logo-name colorFont" >Q&A</a>
+            	<!-- <button type="submit" class="btn btn-primary block full-width m-b" href="qna">바로가기</button> -->
+                <!-- <small>INSPINIA</small>
                 <h2>Perfectly designed </h2>
                 <i class="fa fa-bolt big-icon float-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
+                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p> -->
             </div>
         </div>
-        <div class="row justify-content-center">
+      <!--   <div class="row justify-content-center">
             <div class="col-lg-5 col-lg-offset-1 features-text">
                 <small>INSPINIA</small>
                 <h2>Perfectly designed </h2>
@@ -560,8 +548,9 @@ font{
                 <i class="fa fa-users big-icon float-right"></i>
                 <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
             </div>
-        </div>
+        </div> -->
     </div>
+</section>
 
 <section id="contact" class="gray-section contact">
     <div class="container">
@@ -601,8 +590,7 @@ font{
         </div>
         <div class="row">
             <div class="col-lg-12 text-center m-t-lg m-b-lg">
-                <p><strong>Copyright &copy; 2019 BY BISION. All rights reserved. </strong>
-                <!-- <br/> consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde. --></p>
+                <p><strong>Copyright &copy; 2019 BY BISION. All rights reserved. </strong></p>
             </div>
         </div>
     </div>

@@ -35,6 +35,7 @@
 		WHERE 1=1
 		AND a.cpykeywordseq = b.cpykeywordseq
 		AND a.cpykeywordseq = #{cpykeywordseq}
+		ORDER BY to_char(a.month,'YYYY-MM')
 	</select>
 	
 	<select id="getCpyAgeCount" parameterType="int" resultType="CpyAgeCountVO">
@@ -50,6 +51,54 @@
 		FROM cpykeyword 
 		WHERE cpykeyword = #{searchKeyword}
 	</select>
+	
+	<select id="getCpyNewsInfo" parameterType="CpyNewsInfoVO" resultType="CpyNewsInfoVO">
+		SELECT a.cpykeywordseq, a.cpykeyword, b.news_title, DBMS_LOB.SUBSTR(b.news_content,300) as news_content, b.news_image, b.news_date, b.byline, b.emtanalysis
+		FROM cpykeyword a, cpynewsinfo b
+		WHERE 1=1
+		AND a.cpykeywordseq = b.cpykeywordseq
+		AND a.cpykeywordseq = #{cpykeywordseq}
+		<choose>
+	    	<when test="news_division.equalsIgnoreCase('KOR')">
+		AND b.news_division = #{news_division}
+			</when>
+			<when test="news_division.equalsIgnoreCase('ENG')">
+		AND b.news_division = #{news_division}
+			</when>
+			<when test="news_division.equalsIgnoreCase('JPN')">
+		AND b.news_division = #{news_division}
+			</when>
+		</choose>
+		ORDER BY b.news_date DESC
+	</select>
+	
+	<select id="getCpyStaok" parameterType="int" resultType="CpyStaokVO">
+		SELECT a.cpykeywordseq, b.stockvalue, b.country, b.movevalue, b.per, b.sign
+		FROM cpykeyword a, cpystock b
+		WHERE 1=1
+		AND a.cpykeywordseq = b.cpykeywordseq
+		AND a.cpykeywordseq = #{cpykeywordseq}
+	</select>
+	
+	<select id="getCpyNewsListCount" parameterType="CpyNewsInfoVO" resultType="int">
+		SELECT COUNT(*)
+		FROM cpykeyword a, cpynewsinfo b
+		WHERE 1=1
+		AND a.cpykeywordseq = b.cpykeywordseq
+		AND a.cpykeywordseq = #{cpykeywordseq}
+		<choose>
+	    	<when test="news_division.equalsIgnoreCase('KOR')">
+		AND b.news_division = #{news_division}
+			</when>
+			<when test="news_division.equalsIgnoreCase('ENG')">
+		AND b.news_division = #{news_division}
+			</when>
+			<when test="news_division.equalsIgnoreCase('JPN')">
+		AND b.news_division = #{news_division}
+			</when>
+		</choose>
+	</select>
+	
 	
 </mapper>
 
