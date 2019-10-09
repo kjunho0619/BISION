@@ -64,7 +64,6 @@ font{
 	    	<a  role="button" href="homeForm"><img alt="BISION_logo" src="img/BISION_logo_400x200.png"></a>
 	</div>
     <div class="middle-box text-center loginscreen animated fadeInDown" style="padding: 0px;">
-
             <h3>BISION에 오신 것을 환영합니다</h3>
             <p>
             	기업 분석과 키워드 검색 등 BISION만의 <br>다양한 기업 분석 서비스가 준비되어 있습니다.
