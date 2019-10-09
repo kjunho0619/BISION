@@ -8,7 +8,7 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.project.bision.vo.NewsInfoVO" alias="NewsInfoVO" />
+		<typeAlias type="com.project.bision.vo.CpyNewsInfoVO" alias="CpyNewsInfoVO" />
 		<typeAlias type="com.project.bision.vo.CpyMonthCountVO" alias="CpyMonthCountVO" />
 		<typeAlias type="com.project.bision.vo.CpyRliKeywordVO" alias="CpyRliKeywordVO" />
 		<typeAlias type="com.project.bision.vo.CpyGenderCountVO" alias="CpyGenderCountVO" />
@@ -16,6 +16,7 @@
 		<typeAlias type="com.project.bision.vo.CpyAgeCountVO" alias="CpyAgeCountVO" />
 		<typeAlias type="com.project.bision.vo.CpyKeywordVO" alias="CpyKeywordVO" />
 		<typeAlias type="com.project.bision.vo.UserVO" alias="UserVO" />
+		<typeAlias type="com.project.bision.vo.CpyStaokVO" alias="CpyStaokVO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/mainMapper.xml" />

@@ -579,8 +579,7 @@ font{
         </div>
         <div class="row">
             <div class="col-lg-12 text-center m-t-lg m-b-lg">
-                <p><strong>Copyright &copy; 2019 BY BISION. All rights reserved. </strong>
-                <!-- <br/> consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde. --></p>
+                <p><strong>Copyright &copy; 2019 BY BISION. All rights reserved. </strong></p>
             </div>
         </div>
     </div>

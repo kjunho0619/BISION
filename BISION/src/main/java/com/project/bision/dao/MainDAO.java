@@ -2,6 +2,7 @@ package com.project.bision.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,9 @@ import com.project.bision.vo.CpyAgeCountVO;
 import com.project.bision.vo.CpyGenderCountVO;
 import com.project.bision.vo.CpyKeywordVO;
 import com.project.bision.vo.CpyMonthCountVO;
+import com.project.bision.vo.CpyNewsInfoVO;
 import com.project.bision.vo.CpyRliKeywordVO;
+import com.project.bision.vo.CpyStaokVO;
 import com.project.bision.vo.CpyYearCountVO;
 
 @Repository
@@ -60,5 +63,58 @@ public class MainDAO {
 		}
 		
 		return cpyKeyword;
+	}
+
+	public CpyStaokVO getCpyStaok(int cpykeywordseq) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		CpyStaokVO cpyStaok = null;
+		try{
+			cpyStaok = mapper.getCpyStaok(cpykeywordseq);
+		}catch (Exception e) {
+			// TODO: handle exception
+			cpyStaok = null;
+		}
+		return cpyStaok;
+	}
+
+/*	public ArrayList<CpyNewsInfoVO> getCpyNewsInfo(CpyNewsInfoVO vo) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		ArrayList<CpyNewsInfoVO> cpyNewsInfo = null;
+		try{
+			cpyNewsInfo = mapper.getCpyNewsInfo(vo);
+		}catch (Exception e) {
+			// TODO: handle exception
+			cpyNewsInfo = null;
+		}
+		return cpyNewsInfo;
+	}*/
+
+	public int getCpyNewsListCount(CpyNewsInfoVO vo) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		int cpyNewsListCount = 0;
+		
+		try{
+			cpyNewsListCount = mapper.getCpyNewsListCount(vo);
+		}catch(Exception e){
+			cpyNewsListCount = 0;
+		}
+		
+		return cpyNewsListCount;
+	}
+
+	public ArrayList<CpyNewsInfoVO> getCpyNewsInfo(CpyNewsInfoVO vo, RowBounds rb) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		ArrayList<CpyNewsInfoVO> cpyNewsInfo = null;
+		try{
+			cpyNewsInfo = mapper.getCpyNewsInfo(vo, rb);
+		}catch (Exception e) {
+			// TODO: handle exception
+			cpyNewsInfo = null;
+		}
+		return cpyNewsInfo;
 	}
 }

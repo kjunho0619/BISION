@@ -264,6 +264,7 @@
 								<div class="ibox-content">
 									<div style="height: 300px;text-align: center;">
 												<h1 style="padding-top: 120px;">검색 동향 설명</h1>
+
 									</div>
 								</div>
 							</div>
@@ -294,10 +295,10 @@
 			</div>
 			<div class="footer">
 				<div class="float-right">
-					Or follow us on social platform
+					10GB of <strong>250GB</strong> Free.
 				</div>
 				<div>
-					<strong>Copyright &copy; 2019 BY BISION. All rights reserved. </strong>
+					<strong>Copyright</strong> Example Company &copy; 2014-2018
 				</div>
 			</div>
 
