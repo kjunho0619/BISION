@@ -498,7 +498,7 @@
 									</div>
 								</div>
 								<div class="ibox-content">
-									<div style="height: 1020px;">
+									<div style="height: 100%;">
 										<c:choose>
 											<c:when test="${noKeyword != null}">
 											<div style="text-align: center;">
@@ -534,11 +534,15 @@
 												<c:forEach items="${cpyNewsInfo}" var="cpyNews">
 													<div class="contact-box">
 									                    <a class="row" href="profile.html">
-									                    <div class="col-3">
-									                        <div class="text-center">
-									                            <img alt="image" class="m-t-xs img-fluid" src="img/engnews/engnews-S Korea sees key industrial indexes rise in August.jpg"/>
-									                        </div>
-									                    </div>
+									                    <c:choose>
+									                    	<c:when test="${not empty cpyNews.news_image}">
+											                    <div class="col-3">
+											                        <div class="text-center">
+											                            <img alt="image" class="m-t-xs img-fluid" src="${cpyNews.news_image}"/>
+											                        </div>
+											                    </div>									                    		
+									                    	</c:when>
+									                    </c:choose>
 									                    <div class="col-9" style="padding-top: 20px;">
 									                    	<h2 class="list-group-item-heading">${cpyNews.news_title}</h2>
 															<h3 class="list-group-item-text truncate-text">${cpyNews.news_content}</h3>

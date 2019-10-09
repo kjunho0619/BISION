@@ -69,6 +69,7 @@
 		AND b.news_division = #{news_division}
 			</when>
 		</choose>
+		ORDER BY b.news_date DESC
 	</select>
 	
 	<select id="getCpyStaok" parameterType="int" resultType="CpyStaokVO">
