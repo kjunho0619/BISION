@@ -154,7 +154,6 @@
     	}
     	
     	function cpyRliSearchForm(rlikeyword, cpykeywordseq) {
-    		alert(rlikeyword);
 			location.href="cpyRlisearch?rlikeyword="+rlikeyword+"&cpykeywordseq="+cpykeywordseq;
 		}
     </script>

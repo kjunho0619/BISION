@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.project.bision.vo.CpyMonthCountVO;
 import com.project.bision.vo.CpyNewsInfoVO;
+import com.project.bision.vo.CpyRliMonthCountVO;
+import com.project.bision.vo.CpyRliYearCountVO;
 import com.project.bision.vo.CpyStaokVO;
 import com.project.bision.vo.CpyYearCountVO;
 
@@ -58,6 +60,23 @@ public class OverallAnalysis {
 		   */
 		 
 		return totalStaokPer;
+	}
+
+	public double searchRliCountOverall(CpyRliMonthCountVO cpyrlimonthcount,
+			ArrayList<CpyRliYearCountVO> cpyRliYearCountList) {
+		//검색량 종합평가 값
+		double thismonthCount = (cpyrlimonthcount.getPccount() + cpyrlimonthcount.getMobilecount());//이번달 검색량
+		double lastmonthCount = (cpyRliYearCountList.get(cpyRliYearCountList.size()-1).getTotalcount());//저번달 검색량
+		
+		double totalmonthcount = ((thismonthCount - lastmonthCount) / thismonthCount) * 200.0; //(이번달 - 저번달) / 이번달 * 200
+		 
+		/* System.out.println("이번달 검색 수 : "  + thismonthCount);
+		
+		 	System.out.println("저번달 검색 수 : " + lastmonthCount);
+		 
+			System.out.println("검색량 종합평가 비율 : " + totalmonthcount); */
+		
+		return totalmonthcount; 
 	}
 	
 }

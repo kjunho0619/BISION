@@ -10,9 +10,11 @@ import com.project.bision.vo.CpyGenderCountVO;
 import com.project.bision.vo.CpyKeywordVO;
 import com.project.bision.vo.CpyMonthCountVO;
 import com.project.bision.vo.CpyNewsInfoVO;
+import com.project.bision.vo.CpyRliAgeCountVO;
 import com.project.bision.vo.CpyRliGenderCountVO;
 import com.project.bision.vo.CpyRliKeywordVO;
 import com.project.bision.vo.CpyRliMonthCountVO;
+import com.project.bision.vo.CpyRliYearCountVO;
 import com.project.bision.vo.CpyStaokVO;
 import com.project.bision.vo.CpyYearCountVO;
 
@@ -43,6 +45,10 @@ public interface MainMapper {
 	CpyRliMonthCountVO getCpyRliMonthCount(Map<String, String> map);
 	//연관검색어 성별 검색수
 	CpyRliGenderCountVO getCpyRliGenderCount(Map<String, String> map);
+	//연관검색어 나이별 검색
+	ArrayList<CpyRliAgeCountVO> getCpyRliAgeCount(Map<String, String> map);
+	//연관검색어 검색동향
+	ArrayList<CpyRliYearCountVO> getCpyRliYearCount(Map<String, String> map);
 	
 	
 }

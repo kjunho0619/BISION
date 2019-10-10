@@ -24,9 +24,11 @@ import com.project.bision.vo.CpyGenderCountVO;
 import com.project.bision.vo.CpyKeywordVO;
 import com.project.bision.vo.CpyMonthCountVO;
 import com.project.bision.vo.CpyNewsInfoVO;
+import com.project.bision.vo.CpyRliAgeCountVO;
 import com.project.bision.vo.CpyRliGenderCountVO;
 import com.project.bision.vo.CpyRliKeywordVO;
 import com.project.bision.vo.CpyRliMonthCountVO;
+import com.project.bision.vo.CpyRliYearCountVO;
 import com.project.bision.vo.CpyStaokVO;
 import com.project.bision.vo.CpyYearCountVO;
 
@@ -87,10 +89,10 @@ public class MainController {
 					//코드 추가
 					
 					int totalRecordCount = service.getCpyNewsListCount(news_division, cpykeywordseq);
-					System.out.println("totalRecordCount : " + totalRecordCount);
+					//System.out.println("totalRecordCount : " + totalRecordCount);
 					
 					PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
-					System.out.println(navi.getStartRecord());
+					//System.out.println(navi.getStartRecord());
 					
 					
 					/////////////////////////////////////////////////////////////////////////////////
@@ -170,24 +172,34 @@ public class MainController {
 		if(cpyRilKeyword != null){
 			int cpyRilKeywordseq = cpyRilKeyword.getCpyrlikeywordseq();
 			model.addAttribute("cpyRilKeywordseq", cpyRilKeywordseq);
-			
+			System.out.println("cpyRilKeywordseq : " + cpyRilKeywordseq);
 			//기업 최근달 검색수
 			CpyRliMonthCountVO cpyrlimonthcount = service.getCpyRliMonthCount(cpyRilKeywordseq, cpykeywordseq);
 			model.addAttribute("cpymonthcount", cpyrlimonthcount);
-			
+			System.out.println("cpyrlimonthcount : " + cpyrlimonthcount);
 			//성별 검색량
 			CpyRliGenderCountVO cpyrliGenderCount = service.getCpyRliGenderCount(cpyRilKeywordseq, cpykeywordseq);
 			model.addAttribute("cpyGenderCount", cpyrliGenderCount);
+			System.out.println("cpyrliGenderCount : " + cpyrliGenderCount);
 			
-			
-/*			//1년 검색량
-			ArrayList<CpyYearCountVO> cpyYearCountList = service.getCpyYearCount(cpykeywordseq);
-			model.addAttribute("cpyYearCountList", cpyYearCountList);
-			
+			//1년 검색량
+			ArrayList<CpyRliYearCountVO> cpyRliYearCountList = service.getCpyRliYearCount(cpyRilKeywordseq, cpykeywordseq);
+			model.addAttribute("cpyYearCountList", cpyRliYearCountList);
+			System.out.println("cpyRliYearCountList : " + cpyRliYearCountList);
 			
 			//나이 검색량
-			ArrayList<CpyAgeCountVO> cpyAgeCountList = service.getCpyAgeCount(cpykeywordseq);
-			model.addAttribute("cpyAgeCountList", cpyAgeCountList);*/
+			ArrayList<CpyRliAgeCountVO> cpyRliAgeCountList = service.getCpyRliAgeCount(cpyRilKeywordseq, cpykeywordseq);
+			model.addAttribute("cpyAgeCountList", cpyRliAgeCountList);
+			System.out.println("cpyRliAgeCountList : " + cpyRliAgeCountList);
+			
+			//종합평가
+			OverallAnalysis o = new OverallAnalysis();
+			
+			double overallRliMonthCount = o.searchRliCountOverall(cpyrlimonthcount, cpyRliYearCountList); //검색량 종합평가
+			model.addAttribute("overallMonthCount", String.format("%.3f", overallRliMonthCount));
+			
+			double overallAnalysis = overallRliMonthCount;//종합평가
+			model.addAttribute("overallAnalysis", String.format("%.3f", overallAnalysis));
 			
 		}else{
 			model.addAttribute("noKeyword", "noKeyword");

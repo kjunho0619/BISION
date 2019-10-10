@@ -132,5 +132,23 @@
 		AND b.cpyrlikeywordseq = #{cpyrlikeywordseq}
 	</select>
 	
+	<select id="getCpyRliAgeCount" parameterType="map" resultType="CpyRliAgeCountVO">
+        SELECT a.cpyrlikeywordseq, a.age, a.pcmonthcount, a.mobilemonthcount
+		FROM cpyrliagecount a, cpyrlikeyword b 
+		WHERE 1=1
+		AND a.cpyrlikeywordseq = b.cpyrlikeywordseq
+		AND b.cpykeywordseq = #{cpykeywordseq}
+        AND a.cpyrlikeywordseq = #{cpyrlikeywordseq}
+	</select>
+	
+	<select id="getCpyRliYearCount" parameterType="map" resultType="CpyRliYearCountVO">
+        SELECT a.cpyrlikeywordseq, to_char(a.month,'YYYY-MM') as month, (a.pcmonthcount + a.mobilemonthcount) as totalcount
+		FROM cpyrliyearcount a, cpyrlikeyword b 
+		WHERE 1=1
+		AND a.cpyrlikeywordseq = b.cpyrlikeywordseq
+		AND b.cpykeywordseq = 1
+		AND a.cpyrlikeywordseq = 3
+        ORDER BY to_char(a.month,'YYYY-MM')
+	</select>
 </mapper>
 

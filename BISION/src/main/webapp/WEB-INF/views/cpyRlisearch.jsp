@@ -216,95 +216,6 @@
 						<div class="col-lg-6">
 							<div class="ibox ">
 								<div class="ibox-title">
-									<h5>연관 검색어</h5>
-									<div class="ibox-tools">
-										<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
-										</a> <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-											<i class="fa fa-wrench"></i>
-										</a>
-										<ul class="dropdown-menu dropdown-user">
-											<li><a href="#" class="dropdown-item">연관 검색어</a></li>
-											<li><a href="#" class="dropdown-item">연관 검색 통계</a></li>
-										</ul>
-										<a class="close-link"> <i class="fa fa-times"></i></a>
-									</div>
-								</div>
-								<div class="ibox-content">
-									<div style="height: 250px;text-align: center;">
-										<!-- 코드 추가 -->
-										<c:choose>
-											<c:when test="${noKeyword != null}">
-												<h1 style="padding-top: 100px;">검색된 결과가 없습니다.</h1>
-											</c:when>
-											<c:otherwise>
-												<br>
-												<br>
-												<c:forEach items="${cpyRliKeywordList}" var="cpyRliKeyword"
-													varStatus="status">
-													<button type="button" class="btn btn-outline btn-primary">${cpyRliKeyword.rlikeyword}</button>&nbsp
-					                    			<c:if test="${status.count%4 == 0}">
-														<br>
-														<br>
-													</c:if>
-												</c:forEach>
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6">
-							<div class="ibox ">
-								<div class="ibox-title">
-									<h5>주식</h5>
-									<div class="ibox-tools">
-										<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
-										</a> <a class="close-link"> <i class="fa fa-times"></i>
-										</a>
-									</div>
-								</div>
-								<div class="ibox-content">
-									<div style="height: 250px; text-align: center;">
-										<c:choose>
-											<c:when test="${noKeyword != null}">
-												<h1 style="padding-top: 60px;">검색된 결과가 없습니다.</h1>
-											</c:when>
-											<c:otherwise>
-												<c:if test="${cpyStaok == null}">
-													<div style="padding-top: 60px;">
-														주식 상장된 종목이 아닙니다.
-													</div>
-												</c:if>
-												<c:if test="${cpyStaok.sign eq '+'}">
-													<h1><strong>주식</strong></h1>
-													<div style="padding-top: 60px;">
-														<!-- <i class="fa fa-line-chart" style="font-size: 225px;"></i> -->
-														<strong style="font-size: 30px; color:red;">${cpyStaok.stockvalue}</strong>&nbsp;&nbsp;
-														<font style="font-size: 24px;">${cpyStaok.country}</font>
-														<font style="color:red;font-size: 20px;">${cpyStaok.sign} ${cpyStaok.movevalue}( ${cpyStaok.per} %<i class="fa fa-sort-asc"></i>)</font>
-													 </div>
-												</c:if>
-												<c:if test="${cpyStaok.sign eq '-'}">
-													<h1><strong>주식</strong></h1>
-													<div style="padding-top: 60px;">
-														<strong style="font-size: 30px; color:blue;">${cpyStaok.stockvalue}</strong>&nbsp;&nbsp;
-														<font style="font-size: 24px;">${cpyStaok.country}</font>
-														<font style="color:blue;font-size: 20px;">${cpyStaok.sign} ${cpyStaok.movevalue}( ${cpyStaok.per} %<i class="fa fa-sort-desc"></i>)</font>
-													</div>
-												</c:if>
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="ibox ">
-								<div class="ibox-title">
 									<h5>키워드 검색량</h5>
 									<div class="ibox-tools">
 										<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
@@ -384,9 +295,9 @@
 														<tr>
 															<td>1</td>
 															<td><span class="pie">검색량 종합평가 가중치</span></td>
-															<c:choose>
- 																<c:when test="${overallMonthCount >= '0'}"> --%>
- 																	<td class="text-navy"><i class="fa fa-level-up"></i>${overallMonthCount}</td>
+															 <c:choose>
+																<c:when test="${overallMonthCount >= '0'}"> 
+																	<td class="text-navy"><i class="fa fa-level-up"></i>${overallMonthCount}</td>
  																</c:when>
 																<c:otherwise>
 																	<td class="text-warning"><i class="fa fa-level-down"></i>${overallMonthCount}</td>
@@ -396,26 +307,12 @@
 														<tr>
 															<td>2</td>
 															<td><span class="pie">감정분석 종합평가 가중치</span></td>
-														<c:choose>
- 																<c:when test="${overallEmtanalysis >= '0'}">
-																	<td class="text-navy"><i class="fa fa-level-up"></i>${overallEmtanalysis}</td>
- 																</c:when>
-																<c:otherwise>
-																	<td class="text-warning"><i class="fa fa-level-down"></i>${overallEmtanalysis}</td>
-																</c:otherwise>
-															</c:choose>												
+															<td>-</td>												
 														</tr>
 														<tr>
 															<td>3</td>
 															<td><span class="pie">주식 종합평가 가중지</span></td>
- 															<c:choose>
-																<c:when test="${overallStaokPer >= '0'}"> 
-																	<td class="text-navy"><i class="fa fa-level-up"></i>${overallStaokPer}</td>
- 																</c:when>
-																<c:otherwise>
-																	<td class="text-warning"><i class="fa fa-level-down"></i>${overallStaokPer}</td>
-																</c:otherwise>
-															</c:choose>
+															<td>-</td>
 														</tr>
 														<tr>
 															<td>4</td>
@@ -483,107 +380,6 @@
 											</c:when>
 											<c:otherwise>
 												<div id="morris-one-line-chart" style="height: 300px;"></div>
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="ibox ">
-								<div class="ibox-title">
-									<h5>화재 기사</h5>
-									<div class="ibox-tools">
-										<a class="collapse-link"> <i class="fa fa-chevron-up"></i></a>
-										<a class="close-link"> <i class="fa fa-times"></i></a>
-									</div>
-								</div>
-								<div class="ibox-content">
-									<div style="height: 100%;">
-										<c:choose>
-											<c:when test="${noKeyword != null}">
-											<div style="text-align: center;">
-												<h1 style="padding-top: 260px;">검색된 결과가 없습니다.</h1>
-											</div>
-											</c:when>
-											<c:otherwise>
-												<div class="row">
-													<div class="col-sm-5 m-b-xs">
-														<form action="cpysearch" method="get" id="searchForm">
-															<div class="input-group">
-																<select class="form-control-sm form-control input-s-sm inline" name="news_division">
-																	<option value="ALL" ${news_division =='ALL'?'selected' :''}>전체</option>
-																	<option value="KOR" ${news_division =='KOR'?'selected' :''}>한국기사</option>
-																	<option value="ENG" ${news_division =='ENG'?'selected' :''}>영문기사</option>
-																	<option value="JPN" ${news_division =='JPN'?'selected' :''}>일본기사</option>
-																</select>
-																<input type="hidden" value="${searchKeyword}" id="searchKeyword" name="searchKeyword">
-																<button type="button" class="btn btn-sm btn-primary" onclick="javascript:submit();">확인</button>
-															</div>
-														</form>
-													</div>
-													<div class="col-sm-4 m-b-xs"></div>
-													<div class="col-sm-3">
-														<div class="input-group">
-															<input placeholder="Search" type="text" class="form-control form-control-sm" name="searchWord" id="searchWord">
-																<button type="button" class="btn btn-sm btn-primary">검색</button>
-																<span class="input-group-append"></span>
-														</div>
-													</div>
-												</div>
-												<br>
-												<c:forEach items="${cpyNewsInfo}" var="cpyNews">
-													<div class="contact-box">
-									                    <a class="row" href="javascript:cpysearchNewsDetali(${cpyNews.news_no})">
-									                    <c:choose>
-									                    	<c:when test="${not empty cpyNews.news_image}">
-											                    <div class="col-3">
-											                        <div class="text-center">
-											                            <img alt="image" class="m-t-xs img-fluid" src="${cpyNews.news_image}"/>
-											                        </div>
-											                    </div>									                    		
-									                    	</c:when>
-									                    </c:choose>
-									                    <div class="col-9" style="padding-top: 20px;">
-									                    	<h2 class="list-group-item-heading">${cpyNews.news_title}</h2>
-															<h3 class="list-group-item-text truncate-text">${cpyNews.news_content}</h3>
-															<p><font style="color: blue;">${cpyNews.news_date}</font>&nbsp; ${cpyNews.byline}</p>
-									                    </div>
-									                        </a>
-									                </div>
-									                </c:forEach>
-												<br>
-												<div class="row" style="padding: 0px 0px 0px 0px; text-align: center; margin: auto;">
-													<div style="width: auto; left: 0; right: 0; margin-left: auto; margin-right: auto;">
-														<ul class="pagination float-right">
-															<li class="footable-page-arrow disabled">
-																<a data-page="first" href="cpysearch?searchKeyword=${searchKeyword}&currentPage=${navi.currentPage-navi.pagePerGroup}&news_division=${news_division}">«</a>
-															</li>
-															<li class="footable-page-arrow disabled">
-																<a data-page="prev" href="cpysearch?searchKeyword=${searchKeyword}&currentPage=${navi.currentPage-1}&news_division=${news_division}">‹</a>
-															</li>
-																<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup}" varStatus="status">
-																	<c:choose>
-																		<c:when test="${navi.currentPage == page}">
-																			<li class="footable-page active"><a href="cpysearch?searchKeyword=${searchKeyword}&currentPage=${page}&news_division=${news_division}">${page}</a></li>
-																		</c:when>
-																		<c:otherwise>
-																			<li class="footable-page"><a href="cpysearch?searchKeyword=${searchKeyword}&currentPage=${page}&news_division=${news_division}">${page}</a></li>
-																		</c:otherwise>
-																	</c:choose>
-																</c:forEach>
-															<li class="footable-page-arrow">
-																<a data-page="next" href="cpysearch?searchKeyword=${searchKeyword}&currentPage=${navi.currentPage+1}&news_division=${news_division}">›</a>
-															</li>
-															<li class="footable-page-arrow">
-																<a data-page="last" href="cpysearch?searchKeyword=${searchKeyword}&currentPage=${navi.currentPage+navi.pagePerGroup}&news_division=${news_division}">»</a>
-															</li>
-														</ul>
-													</div>
-												</div>
 											</c:otherwise>
 										</c:choose>
 									</div>

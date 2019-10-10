@@ -14,9 +14,11 @@ import com.project.bision.vo.CpyGenderCountVO;
 import com.project.bision.vo.CpyKeywordVO;
 import com.project.bision.vo.CpyMonthCountVO;
 import com.project.bision.vo.CpyNewsInfoVO;
+import com.project.bision.vo.CpyRliAgeCountVO;
 import com.project.bision.vo.CpyRliGenderCountVO;
 import com.project.bision.vo.CpyRliKeywordVO;
 import com.project.bision.vo.CpyRliMonthCountVO;
+import com.project.bision.vo.CpyRliYearCountVO;
 import com.project.bision.vo.CpyStaokVO;
 import com.project.bision.vo.CpyYearCountVO;
 
@@ -103,7 +105,7 @@ public class MainService {
 	public CpyRliMonthCountVO getCpyRliMonthCount(int cpyRilKeywordseq, int cpykeywordseq) {
 		// TODO Auto-generated method stub
 		Map<String, String> map = new HashMap<>();
-		map.put("cpyRilKeywordseq", cpyRilKeywordseq + "");
+		map.put("cpyrlikeywordseq", cpyRilKeywordseq + "");
 		map.put("cpykeywordseq", cpykeywordseq + "");
 		return dao.getCpyRliMonthCount(map);
 	}
@@ -111,8 +113,24 @@ public class MainService {
 	public CpyRliGenderCountVO getCpyRliGenderCount(int cpyRilKeywordseq, int cpykeywordseq) {
 		// TODO Auto-generated method stub
 		Map<String, String> map = new HashMap<>();
-		map.put("cpyRilKeywordseq", cpyRilKeywordseq + "");
+		map.put("cpyrlikeywordseq", cpyRilKeywordseq + "");
 		map.put("cpykeywordseq", cpykeywordseq + "");
 		return dao.getCpyRliGenderCount(map);
+	}
+
+	public ArrayList<CpyRliAgeCountVO> getCpyRliAgeCount(int cpyRilKeywordseq, int cpykeywordseq) {
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<>();
+		map.put("cpyrlikeywordseq", cpyRilKeywordseq + "");
+		map.put("cpykeywordseq", cpykeywordseq + "");
+		return dao.getCpyRliAgeCount(map);
+	}
+
+	public ArrayList<CpyRliYearCountVO> getCpyRliYearCount(int cpyRilKeywordseq, int cpykeywordseq) {
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<>();
+		map.put("cpyrlikeywordseq", cpyRilKeywordseq + "");
+		map.put("cpykeywordseq", cpykeywordseq + "");
+		return dao.getCpyRliYearCount(map);
 	}
 }

@@ -13,9 +13,11 @@ import com.project.bision.vo.CpyGenderCountVO;
 import com.project.bision.vo.CpyKeywordVO;
 import com.project.bision.vo.CpyMonthCountVO;
 import com.project.bision.vo.CpyNewsInfoVO;
+import com.project.bision.vo.CpyRliAgeCountVO;
 import com.project.bision.vo.CpyRliGenderCountVO;
 import com.project.bision.vo.CpyRliKeywordVO;
 import com.project.bision.vo.CpyRliMonthCountVO;
+import com.project.bision.vo.CpyRliYearCountVO;
 import com.project.bision.vo.CpyStaokVO;
 import com.project.bision.vo.CpyYearCountVO;
 
@@ -171,5 +173,31 @@ public class MainDAO {
 			cpyRliGenderCount = null;
 		}
 		return cpyRliGenderCount;
+	}
+
+	public ArrayList<CpyRliAgeCountVO> getCpyRliAgeCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		ArrayList<CpyRliAgeCountVO> getCpyRliAgeCount = null;
+		try{
+			getCpyRliAgeCount = mapper.getCpyRliAgeCount(map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			getCpyRliAgeCount = null;
+		}
+		return getCpyRliAgeCount;
+	}
+
+	public ArrayList<CpyRliYearCountVO> getCpyRliYearCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		ArrayList<CpyRliYearCountVO> getCpyRliYearCount = null;
+		try{
+			getCpyRliYearCount = mapper.getCpyRliYearCount(map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			getCpyRliYearCount = null;
+		}
+		return getCpyRliYearCount;
 	}
 }
