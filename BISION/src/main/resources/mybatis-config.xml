@@ -40,7 +40,7 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/mainMapper.xml" />
-		<mapper resource="mapper/keywordMapper.xml" />
+		<!-- <mapper resource="mapper/keywordMapper.xml" /> -->
 		<mapper resource="mapper/userMapper.xml" />
 	</mappers>
 </configuration>
