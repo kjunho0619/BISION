@@ -94,16 +94,7 @@ font{
 
                   </ul>
                   <ul class="nav navbar-top-links navbar-right">
-                     <!-- 로그인 전 -->
-                    	<c:if test="${sessionScope.loginUser == null }"> 
-                	     	<li><a href="loginForm"><i class="fa fa-user-o"></i><font class="colorFont">로그인</font></a></li>
-                	  	 	<li><a href="signUpForm"><i class="fa fa-sign-in"></i><font class="colorFont">회원가입</font></a></li>
-                		</c:if>
-                		<!-- 로그인 후 -->
-                		<c:if test="${sessionScope.loginUser != null }"> 
-                	     	<li><a href="checkPassword"><i class="fa fa-user"></i><font class="colorFont">마이페이지</font></a></li>
-                	  	 	<li><a href="logout"><i class="fa fa-sign-out"></i><font class="colorFont">로그아웃</font></a></li>
-                		</c:if>
+                     <li><a href="login"> <i class="fa fa-sign-out"></i> Logout</a></li>
                   </ul>
                </div>
             </nav>
@@ -126,6 +117,12 @@ font{
                         </li>
                     </ol>
                 </div>
+                
+               <!--  <div class="col-sm-8">
+                    <div class="title-action">
+                        <a href="" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> 문의하기</a>
+                    </div>
+                </div>  --> 
             </div> 
             
            	<div class="wrapper wrapper-content animated fadeInRight">
@@ -136,7 +133,8 @@ font{
                         <div class="ibox-content m-b-sm border-bottom">
                             <div class="text-center p-lg">
                                 <h2>궁금하신 점, 도움이 필요하신 점이 있으시다면</h2>
-                                <a class="btn btn-primary btn-sm" href="qnaboard;"><i class="fa fa-plus"></i> <span class="bold">문의하기</span></a> 
+                                <!-- <span>우측 상단에</span> -->
+                                <button title="Create new cluster" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span class="bold">문의하기</span></button> 
                                 <span>버튼을 클릭해주세요.</span>
                             </div>
                         </div>  
@@ -161,7 +159,17 @@ font{
 	                    </select>
 	                    </div>
 	                    <div class="col-sm-4 m-b-xs">
-	                       
+	                        <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
+	                            <label class="btn btn-sm btn-white ">
+	                                <input type="radio" name="options" id="option1" autocomplete="off" checked> Day
+	                            </label>
+	                            <label class="btn btn-sm btn-white active">
+	                                <input type="radio" name="options" id="option2" autocomplete="off"> Week
+	                            </label>
+	                            <label class="btn btn-sm btn-white">
+	                                <input type="radio" name="options" id="option3" autocomplete="off"> Month
+	                            </label>
+	                        </div> -->
 	                    </div>
 	                    <div class="col-sm-3">
 	                        <div class="input-group"><input placeholder="Search" type="text" class="form-control form-control-sm"> <span class="input-group-append"> <button type="button" class="btn btn-sm btn-primary">Go!

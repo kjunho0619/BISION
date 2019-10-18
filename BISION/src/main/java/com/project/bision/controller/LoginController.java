@@ -1,7 +1,5 @@
 package com.project.bision.controller;
 
-import java.util.Locale;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,15 +29,20 @@ public class LoginController {
 	@RequestMapping(value = "login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(UserVO vo, String remember_userId, HttpSession session, RedirectAttributes rttr,
 			HttpServletResponse response, HttpServletRequest request) {
-		if (session.getAttribute("userId") != null) {
+		if (session.getAttribute("userid") != null) {
 			// 기존에 login이란 세션 값이 존재한다면
-			session.removeAttribute("userId");// 기존값을 제거해 준다.
+			session.removeAttribute("userid");// 기존값을 제거해 준다.
+		}
+		if (session.getAttribute("loginUser") != null) {
+			// 기존에 login이란 세션 값이 존재한다면
+			session.removeAttribute("loginUser");// 기존값을 제거해 준다.
 		}
 
 		UserVO loginUser = service.loginCheck(vo);
 
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("userid", loginUser.getUserid());
 			// 쿠키 추가
 			if (remember_userId != null) {
 				System.out.println("쿠키 생성");
@@ -81,10 +83,31 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
-	/*패스워드 확인*/
-	@RequestMapping(value = "checkPassword", method = RequestMethod.GET)
-	public String checkPassword(Locale locale, Model model) {
-
-		return "checkPassword";
+	@RequestMapping(value = "signUpForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String signUpForm(HttpSession session) {
+		return "signUp";
 	}
+	
+	@RequestMapping(value = "signup", method = { RequestMethod.GET, RequestMethod.POST })
+	public String signup(UserVO vo, RedirectAttributes rttr) {
+		boolean signupCheck = service.signup(vo);
+		
+		if(signupCheck == true){
+			rttr.addFlashAttribute("signupMessage", vo.getUserid() + "님 회원가입을 축하합니다.");
+			return "redirect:/";
+		}else{
+			rttr.addFlashAttribute("signupErrMessage", "회원가입에 실패하였습니다.");
+			return "redirect:/signup";
+		}
+		
+		
+	}
+	
+	@RequestMapping(value = "complatePayment", method = { RequestMethod.GET, RequestMethod.POST })
+	public String complatePayment(UserVO vo, HttpSession session) {
+		service.updatePayment((String)session.getAttribute("userid"));
+		return "redirect:/";	
+	}
+	
+	
 }

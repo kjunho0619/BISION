@@ -15,11 +15,32 @@
 		<typeAlias type="com.project.bision.vo.CpyYearCountVO" alias="CpyYearCountVO" />
 		<typeAlias type="com.project.bision.vo.CpyAgeCountVO" alias="CpyAgeCountVO" />
 		<typeAlias type="com.project.bision.vo.CpyKeywordVO" alias="CpyKeywordVO" />
-		<typeAlias type="com.project.bision.vo.UserVO" alias="UserVO" />
 		<typeAlias type="com.project.bision.vo.CpyStaokVO" alias="CpyStaokVO" />
+		<typeAlias type="com.project.bision.vo.CpyRliMonthCountVO" alias="CpyRliMonthCountVO" />
+		<typeAlias type="com.project.bision.vo.CpyRliGenderCountVO" alias="CpyRliGenderCountVO" />
+		<typeAlias type="com.project.bision.vo.CpyRliAgeCountVO" alias="CpyRliAgeCountVO" />
+		<typeAlias type="com.project.bision.vo.CpyRliYearCountVO" alias="CpyRliYearCountVO" />
+		
+		<typeAlias type="com.project.bision.vo.UserVO" alias="UserVO" />
+
+		<typeAlias type="com.project.bision.vo.AgeCountVO" alias="AgeCountVO" />
+		<typeAlias type="com.project.bision.vo.GenderCountVO" alias="GenderCountVO" />
+		<typeAlias type="com.project.bision.vo.KeywordVO" alias="KeywordVO" />
+		<typeAlias type="com.project.bision.vo.MonthCountVO" alias="MonthCountVO" />
+		<typeAlias type="com.project.bision.vo.NewsInfoVO" alias="NewsInfoVO" />
+		<typeAlias type="com.project.bision.vo.RliAgeCountVO" alias="RliAgeCountVO" />
+		<typeAlias type="com.project.bision.vo.RliGenderCountVO" alias="RliGenderCountVO" />
+		<typeAlias type="com.project.bision.vo.RliKeywordVO" alias="RliKeywordVO" />
+		<typeAlias type="com.project.bision.vo.RliMonthCountVO" alias="RliMonthCountVO" />
+		<typeAlias type="com.project.bision.vo.RliYearCountVO" alias="RliYearCountVO" />
+		<typeAlias type="com.project.bision.vo.YearCountVO" alias="YearCountVO" />
+
+		
+		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/mainMapper.xml" />
+		<mapper resource="mapper/keywordMapper.xml" />
 		<mapper resource="mapper/userMapper.xml" />
 	</mappers>
 </configuration>

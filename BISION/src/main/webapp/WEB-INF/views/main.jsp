@@ -79,11 +79,11 @@
 						<ul class="nav navbar-nav mr-auto">
 							<li class="active"><a aria-expanded="false" role="button"
 								href="homeForm"> 메인 페이지 </a></li>
-							<li class="dropdown"><a aria-expanded="false" role="button"
+ 							<li class="dropdown"><a aria-expanded="false" role="button"
 								href="main">기업분석</a></li>
 							<li class="dropdown"><a aria-expanded="false" role="button"
-								href="#"> 키워드 분석</a></li>
-							<li class="dropdown"><a aria-expanded="false" role="button"
+								href="keywordmain"> 키워드 분석</a></li>
+<%--							<li class="dropdown"><a aria-expanded="false" role="button"
 								href="#">보고서 추출</a></li>
 							<li class="dropdown"><a aria-expanded="false" role="button"
 								href="#" class="dropdown-toggle" data-toggle="dropdown">마이
@@ -96,12 +96,15 @@
 											class="colorFont">로그아웃</font></a></li>
 								</c:if>
 								</ul>
-							</li>
+							</li> --%>
 						</ul>
 						<ul class="nav navbar-top-links navbar-right">
-							<li><a href="login"> <i class="fa fa-sign-out"></i>
-									Logout
-							</a></li>
+								<c:if test="${sessionScope.loginUser != null}">
+									<li><a href="myPageForm"><i class="fa fa-user-o"></i><font
+											class="colorFont">마이페이지</font></a></li>
+									<li><a href="logout"><i class="fa fa-sign-out"></i><font
+											class="colorFont">로그아웃</font></a></li>
+								</c:if>
 						</ul>
 					</div>
 				</nav>

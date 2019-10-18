@@ -35,21 +35,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-	}
-/* .img-cover{
-   position: absolute;
-   height: 100%;
-   width: 100%;
-   background-color: rgba(255, 255, 255, 0.4);                                                                 
-   z-index:1;
 }
-
-	.stockImg {
-	    position: relative;
-	    background-image: url(./img/icon/line-chart-256.png);                                                               
-	    height: 100vh;
-	    background-size: cover;
-	} */
 </style>
 </head>
 <!-- Mainly scripts -->
@@ -162,6 +148,14 @@
     	function submit() {
     		$("#searchForm").submit();
     	}
+    	
+    	function cpysearchNewsDetali(news_no){
+    		var win = window.open("cpysearchNewsDetali?news_no=" + news_no, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=200,width=1200,height=1000");
+    	}
+    	
+    	function cpyRliSearchForm(rlikeyword, cpykeywordseq) {
+			location.href="cpyRlisearch?rlikeyword="+rlikeyword+"&cpykeywordseq="+cpykeywordseq;
+		}
     </script>
 
 <body class="top-navigation">
@@ -185,12 +179,14 @@
 						<ul class="nav navbar-nav mr-auto">
 							<li class="active"><a aria-expanded="false" role="button"
 								href="homeForm"> <font class="colorFont">메인 페이지</font></a></li>
+					<c:if test="${sessionScope.loginUser.userdivision == 2}">
 							<li class="dropdown"><a aria-expanded="false" role="button"
 								href="mainForm"><font class="colorFont">기업분석</font></a></li>
 							<li class="dropdown"><a aria-expanded="false" role="button"
-								href="#"><font class="colorFont">키워드 분석</font></a></li>
-							<li class="dropdown"><a aria-expanded="false" role="button"
-								href="#"><font class="colorFont">보고서 추출</font></a></li>
+								href="keywordmain"><font class="colorFont">키워드 분석</font></a></li>
+					</c:if>
+<!-- 							<li class="dropdown"><a aria-expanded="false" role="button"
+								href="#"><font class="colorFont">보고서 추출</font></a></li> -->
 						</ul>
 						<ul class="nav navbar-top-links navbar-right">
 								<c:if test="${sessionScope.loginUser != null}">
@@ -206,6 +202,8 @@
 
 			<div class="wrapper wrapper-content">
 				<div class="container">
+				
+				<c:if test="${sessionScope.loginUser.userdivision == 2}">
 
 					<!-- searchFrom -->
 					<div class="search-form" style="margin-bottom: 50px;">
@@ -221,7 +219,8 @@
 							</div>
 						</form>
 					</div>
-
+			</c:if>
+			
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="ibox ">
@@ -251,7 +250,7 @@
 												<br>
 												<c:forEach items="${cpyRliKeywordList}" var="cpyRliKeyword"
 													varStatus="status">
-													<button type="button" class="btn btn-outline btn-primary">${cpyRliKeyword.rlikeyword}</button>&nbsp
+													<button type="button" class="btn btn-outline btn-primary" onclick="cpyRliSearchForm('${cpyRliKeyword.rlikeyword}','${cpykeywordseq}')">${cpyRliKeyword.rlikeyword}</button>&nbsp
 					                    			<c:if test="${status.count%4 == 0}">
 														<br>
 														<br>
@@ -274,35 +273,37 @@
 										</a>
 									</div>
 								</div>
-								<div class="ibox-content" style="vertical-align: middle;">
-									<div style="height: 250px; text-align: center;");  >
+								<div class="ibox-content">
+									<div style="height: 250px; text-align: center;">
 										<c:choose>
 											<c:when test="${noKeyword != null}">
 												<h1 style="padding-top: 60px;">검색된 결과가 없습니다.</h1>
 											</c:when>
 											<c:otherwise>
-												<c:if test="${cpyStaok == null}">
+												<c:choose>
+													<c:when test="${cpyStaok == null}">
+														<div style="padding-top: 60px;">
+															주식 상장된 종목이 아닙니다.
+														</div>													
+													</c:when>
+													<c:when test="${cpyStaok.sign eq '+'}">
+													<h1><strong>주식</strong></h1>
 													<div style="padding-top: 60px;">
-														주식 상장된 종목이 아닙니다.
-													</div>
-												</c:if>
-												<c:if test="${cpyStaok.sign eq '+'}">
-													<!-- <h1><strong>주식</strong></h1> -->
-													<div style="padding: 90px 0;">
 														<!-- <i class="fa fa-line-chart" style="font-size: 225px;"></i> -->
 														<strong style="font-size: 30px; color:red;">${cpyStaok.stockvalue}</strong>&nbsp;&nbsp;
 														<font style="font-size: 24px;">${cpyStaok.country}</font>
 														<font style="color:red;font-size: 20px;">${cpyStaok.sign} ${cpyStaok.movevalue}( ${cpyStaok.per} %<i class="fa fa-sort-asc"></i>)</font>
-													 </div>
-												</c:if>
-												<c:if test="${cpyStaok.sign eq '-'}">
+													 </div>														
+													</c:when>
+													<c:otherwise>
 													<h1><strong>주식</strong></h1>
 													<div style="padding-top: 60px;">
 														<strong style="font-size: 30px; color:blue;">${cpyStaok.stockvalue}</strong>&nbsp;&nbsp;
 														<font style="font-size: 24px;">${cpyStaok.country}</font>
 														<font style="color:blue;font-size: 20px;">${cpyStaok.sign} ${cpyStaok.movevalue}( ${cpyStaok.per} %<i class="fa fa-sort-desc"></i>)</font>
-													</div>
-												</c:if>
+													</div>													
+													</c:otherwise>
+												</c:choose>
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -374,17 +375,17 @@
 										</a>
 									</div>
 								</div>
-								<div class="ibox-content" >
-									<div style="height: 250px;text-align: center; padding: 30px 0;">
+								<div class="ibox-content">
+									<div style="height: 250px;text-align: center;">
 										<c:choose>
 											<c:when test="${noKeyword != null}">
-												<h1 style="padding-top: 100px;">검색된 결과가 없습니다.</h1>
+												<h1 style="padding-top: 40px;">검색된 결과가 없습니다.</h1>
 											</c:when>
 											<c:otherwise>
-												<!-- <h1><strong>종합평가</strong></h1> -->
-												<table class="table table-hover" style="padding: 10px 0; margin: 0;'">
+												<h1><strong>종합평가</strong></h1>
+												<table class="table table-hover">
 													<thead>
-														<tr style="background-color: #dcdcdc">
+														<tr>
 															<th>No</th>
 															<th>가중치</th>
 															<th>값</th>
@@ -427,7 +428,7 @@
 																</c:otherwise>
 															</c:choose>
 														</tr>
-														<tr style="border-bottom: 1px; border-color: #dcdcdc;">
+														<tr>
 															<td>4</td>
 															<td><span class="pie">종합평가</span></td>
 															<c:choose>
@@ -500,7 +501,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="ibox ">
@@ -547,7 +547,7 @@
 												<br>
 												<c:forEach items="${cpyNewsInfo}" var="cpyNews">
 													<div class="contact-box">
-									                    <a class="row" href="profile.html">
+									                    <a class="row" href="javascript:cpysearchNewsDetali(${cpyNews.news_no})">
 									                    <c:choose>
 									                    	<c:when test="${not empty cpyNews.news_image}">
 											                    <div class="col-3">

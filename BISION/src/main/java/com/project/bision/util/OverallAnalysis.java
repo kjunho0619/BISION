@@ -4,8 +4,13 @@ import java.util.ArrayList;
 
 import com.project.bision.vo.CpyMonthCountVO;
 import com.project.bision.vo.CpyNewsInfoVO;
+import com.project.bision.vo.CpyRliMonthCountVO;
+import com.project.bision.vo.CpyRliYearCountVO;
 import com.project.bision.vo.CpyStaokVO;
 import com.project.bision.vo.CpyYearCountVO;
+import com.project.bision.vo.MonthCountVO;
+import com.project.bision.vo.NewsInfoVO;
+import com.project.bision.vo.YearCountVO;
 
 public class OverallAnalysis {
 
@@ -58,6 +63,57 @@ public class OverallAnalysis {
 		   */
 		 
 		return totalStaokPer;
+	}
+
+	public double searchRliCountOverall(CpyRliMonthCountVO cpyrlimonthcount,
+			ArrayList<CpyRliYearCountVO> cpyRliYearCountList) {
+		//검색량 종합평가 값
+		double thismonthCount = (cpyrlimonthcount.getPccount() + cpyrlimonthcount.getMobilecount());//이번달 검색량
+		double lastmonthCount = (cpyRliYearCountList.get(cpyRliYearCountList.size()-1).getTotalcount());//저번달 검색량
+		
+		double totalmonthcount = ((thismonthCount - lastmonthCount) / thismonthCount) * 200.0; //(이번달 - 저번달) / 이번달 * 200
+		 
+		/* System.out.println("이번달 검색 수 : "  + thismonthCount);
+		
+		 	System.out.println("저번달 검색 수 : " + lastmonthCount);
+		 
+			System.out.println("검색량 종합평가 비율 : " + totalmonthcount); */
+		
+		return totalmonthcount; 
+	}
+
+	public double keywordCountOverall(MonthCountVO monthcount, ArrayList<YearCountVO> yearCountList) {
+		double thismonthCount = (monthcount.getPccount() + monthcount.getMobilecount());//이번달 검색량
+		double lastmonthCount = (yearCountList.get(yearCountList.size()-1).getTotalcount());//저번달 검색량
+		
+		double totalmonthcount = ((thismonthCount - lastmonthCount) / thismonthCount) * 200.0; //(이번달 - 저번달) / 이번달 * 200
+		 
+		/* System.out.println("이번달 검색 수 : "  + thismonthCount);
+		
+		 	System.out.println("저번달 검색 수 : " + lastmonthCount);
+		 
+			System.out.println("검색량 종합평가 비율 : " + totalmonthcount); */
+		
+		return totalmonthcount; 
+	}
+
+	public double keywordoverallEmtanalysis(ArrayList<NewsInfoVO> newsInfo) {
+		double sumEmtanalysis = 0;
+		
+		 //감정분석 종합평가 값
+		 for(NewsInfoVO news : newsInfo){
+			 sumEmtanalysis = sumEmtanalysis + news.getEmtanalysis();//감정분석 결과 값 합산
+		 }
+		 
+		 double ageEmtanalysis = (sumEmtanalysis / newsInfo.size());
+
+		 double totalemtanalysis = ((ageEmtanalysis/100.0) * 60.0);
+		 
+		 /* System.out.println("감정분석 결과 값 합산 : " + sumEmtanalysis);
+		 System.out.println("감정분석 평균 값 : " + ageEmtanalysis);
+		 System.out.println("감정분석 종합평가 비율 : " + totalemtanalysis);//(감정분석 평균 값/100) * 60*/
+		
+		return totalemtanalysis;
 	}
 	
 }

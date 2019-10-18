@@ -82,6 +82,7 @@ font{
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
+                location.href="complatePayment";
             } else {
                 var msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg + rsp.buyer_email;
@@ -99,9 +100,12 @@ font{
     	location.href="loginForm";
     }
 </script>
-
 <body id="page-top" class="landing-page no-skin_config">
-
+<c:if test="${signupMessage != null}">
+	<script type="text/javascript">
+		alert('${signupMessage}');
+	</script>
+</c:if>
 <div class="navbar-wrapper">
         <nav class="navbar navbar-default navbar-fixed-top navbar-expand-md" role="navigation">
             <div class="container">
@@ -115,11 +119,10 @@ font{
                     <ul class="nav navbar-nav mr-auto">
                         <li><a class="nav-link page-scroll" href="#page-top"><font>메인</font></a></li>
                         <li><a class="nav-link page-scroll" href="#features"><font>기술소개</font></a></li>
-                        <!-- <li><a class="nav-link page-scroll" href="#workflow"><font>업데이트</font></a></li> -->
                         <li><a class="nav-link page-scroll" href="#pricing"><font>가격</font></a></li>
                         <li><a class="nav-link page-scroll" href="#customerSupport"><font>고객지원</font></a></li>
                         <c:if test="${sessionScope.loginUser.userdivision == 2}"> 
-                        	<li><a class="nav-link" href="mainForm"><font style="color: /* #ffd1d1 */ #ffcd42">기업평가</font></a></li>
+                        	<li><a class="nav-link" href="mainForm"><font style="color: #ffcd42">기업평가</font></a></li>
                         </c:if>
                     </ul>
                     <ul class="nav navbar-top-links navbar-right">
@@ -313,7 +316,7 @@ font{
                       	화제기사
                     </li>
                     <li>
-                        <a class="btn btn-primary btn-xs" href="#">체험하기</a>
+                        <a class="btn btn-primary btn-xs" href="cpysearch?searchKeyword=삼성">체험하기</a>
                     </li>
                 </ul>
             </div>
@@ -354,12 +357,12 @@ font{
                     </c:if>
                     <c:if test="${sessionScope.loginUser.userdivision == 1}"> 
 	                    <li class="plan-action">
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('MONTH PLAN', '1');" id="month"  data-value1="MONTH PLAN" data-value2="1">결제하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('MONTH PLAN', '100');" id="month"  data-value1="MONTH PLAN" data-value2="1">결제하기</a>
 	                    </li>
                     </c:if>
 					<c:if test="${sessionScope.loginUser.userdivision == 2}"> 
 	                    <li class="plan-action">
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('MONTH PLAN', '1');" id="month"  data-value1="MONTH PLAN" data-value2="1">연장하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('MONTH PLAN', '100');" id="month"  data-value1="MONTH PLAN" data-value2="1">연장하기</a>
 	                    </li>
                     </c:if>
                 </ul>
@@ -404,12 +407,12 @@ font{
                     </c:if>
                     <c:if test="${sessionScope.loginUser.userdivision == 1 }"> 
 	                    <li>
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('YEAR PLAN', '2');" id="year"  data-value1="YEAR PLAN" data-value2="2">결제하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('YEAR PLAN', '200');" id="year"  data-value1="YEAR PLAN" data-value2="2">결제하기</a>
 	                    </li>
                     </c:if>
                     <c:if test="${sessionScope.loginUser.userdivision == 2 }"> 
 	                    <li>
-	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('YEAR PLAN', '2');" id="year"  data-value1="YEAR PLAN" data-value2="2">연장하기</a>
+	                        <a class="btn btn-primary btn-xs" href="javascript:requestpay('YEAR PLAN', '200');" id="year"  data-value1="YEAR PLAN" data-value2="2">연장하기</a>
 	                    </li>
                     </c:if>
                 </ul>

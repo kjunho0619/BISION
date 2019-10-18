@@ -17,5 +17,18 @@ public class UserService {
 		return dao.loginCheck(vo);
 	}
 
+	public boolean signup(UserVO vo) {
+		// TODO Auto-generated method stub
+		return dao.signup(vo);
+	}
+
+	public void updatePayment(String userid) {
+		// TODO Auto-generated method stub
+		UserVO vo = new UserVO();
+		vo.setUserid(userid);
+		
+		dao.updatePayment(vo);
+	}
+
 	
 }

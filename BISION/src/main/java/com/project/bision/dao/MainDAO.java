@@ -1,6 +1,7 @@
 package com.project.bision.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -12,7 +13,11 @@ import com.project.bision.vo.CpyGenderCountVO;
 import com.project.bision.vo.CpyKeywordVO;
 import com.project.bision.vo.CpyMonthCountVO;
 import com.project.bision.vo.CpyNewsInfoVO;
+import com.project.bision.vo.CpyRliAgeCountVO;
+import com.project.bision.vo.CpyRliGenderCountVO;
 import com.project.bision.vo.CpyRliKeywordVO;
+import com.project.bision.vo.CpyRliMonthCountVO;
+import com.project.bision.vo.CpyRliYearCountVO;
 import com.project.bision.vo.CpyStaokVO;
 import com.project.bision.vo.CpyYearCountVO;
 
@@ -116,5 +121,83 @@ public class MainDAO {
 			cpyNewsInfo = null;
 		}
 		return cpyNewsInfo;
+	}
+
+	public CpyNewsInfoVO getDetailNews(int news_no) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		CpyNewsInfoVO detailNews = null;
+		try{
+			detailNews = mapper.getDetailNews(news_no);
+		}catch (Exception e) {
+			// TODO: handle exception
+			detailNews = null;
+		}
+		return detailNews;
+	}
+
+	public CpyRliKeywordVO getCpyRliKeyword(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		CpyRliKeywordVO cpyRliKeyword = null;
+		try{
+			cpyRliKeyword = mapper.getCpyRliKeywordsearch(map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			cpyRliKeyword = null;
+		}
+		return cpyRliKeyword;
+	}
+
+	public CpyRliMonthCountVO getCpyRliMonthCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		CpyRliMonthCountVO cpyRliMonthCount = null;
+		try{
+			cpyRliMonthCount = mapper.getCpyRliMonthCount(map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			cpyRliMonthCount = null;
+		}
+		return cpyRliMonthCount;
+	}
+
+	public CpyRliGenderCountVO getCpyRliGenderCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		CpyRliGenderCountVO cpyRliGenderCount = null;
+		try{
+			cpyRliGenderCount = mapper.getCpyRliGenderCount(map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			cpyRliGenderCount = null;
+		}
+		return cpyRliGenderCount;
+	}
+
+	public ArrayList<CpyRliAgeCountVO> getCpyRliAgeCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		ArrayList<CpyRliAgeCountVO> getCpyRliAgeCount = null;
+		try{
+			getCpyRliAgeCount = mapper.getCpyRliAgeCount(map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			getCpyRliAgeCount = null;
+		}
+		return getCpyRliAgeCount;
+	}
+
+	public ArrayList<CpyRliYearCountVO> getCpyRliYearCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		MainMapper mapper = sqlSession.getMapper(MainMapper.class);
+		ArrayList<CpyRliYearCountVO> getCpyRliYearCount = null;
+		try{
+			getCpyRliYearCount = mapper.getCpyRliYearCount(map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			getCpyRliYearCount = null;
+		}
+		return getCpyRliYearCount;
 	}
 }

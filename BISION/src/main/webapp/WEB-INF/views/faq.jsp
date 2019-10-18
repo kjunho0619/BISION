@@ -196,7 +196,7 @@ font{
                          </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                	<c:choose>
+                                	<c:choose>                               		
                                 		<c:when test="${value eq '2'}">
 		                                     <div id="faq2" class="panel-collapse">
 		                                        <div class="faq-answer">

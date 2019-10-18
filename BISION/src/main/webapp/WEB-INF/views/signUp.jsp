@@ -32,9 +32,20 @@ font{
 }
 </style>
 <script type="text/javascript">
+function signup() {
+	if(confirm("입력하신 정보로 가입하시겠습니까?")==true){
+		document.getElementById('form').submit();
+	}else{
+		return;
+	}
+}
 </script>
 <body class="gray-bg">
-
+<c:if test="${signupErrMessage != null}">
+	<script type="text/javascript">
+		alert('${signupErrMessage}');
+	</script>
+</c:if>
 	<div class="text-center loginscreen animated fadeInDown" style="padding: 40px 0px 0px 0px;">
 	    	<a  role="button" href="homeForm"><img alt="BISION_logo" src="img/BISION_logo_400x200.png"></a>
  	</div>
@@ -53,184 +64,65 @@ font{
 							<h5>회원가입 양식</h5>
 						</div>
 						<div class="ibox-content">
-							<h2>BISION에 오신 것을 환영합니다</h2>
-							<p><br>기업 분석과 키워드 검색 등 BISION만의 다양한 기업 분석 서비스가 준비되어 있습니다.
-									<br>서비스를 이용하시려면 회원가입이 필요합니다.</p>
-
-							<form id="form" action="#" class="wizard-big">
-								<h1>인증하기</h1>
-								<fieldset style="margin-left: 20px; margin-right: 20px;">
-									<h2>이메일 인증</h2>
-									<p>입력하신 이메일로 인증메일을 보내드립니다. 인증을 하셔야 회원가입을 하실 수 있습니다.</p>
-								
-										
-									<div class="col-lg-12" >
-										<!-- 이메일 -->
-												<div class="col-lg-8" style="padding: 0px; float:left;" >
-													<label>e-mail *</label> 
-													<input id="userEmail" name="userEmail" type="email" class="form-control required" >
-												</div>
-												<div class="col-lg-4" style="padding: 27px 0px 0px 13px; float:left;">
-													<button type="submit" class="btn btn-primary" id="emailCheck">인증메일 발송</button>
-												</div>
-												<br>
-										<!-- 인증번호 -->
-												<div class="col-lg-8" style="padding: 15px 0px 0px 0px; float:left;">
-													<label>인증번호 *</label> 
-													<input id="confirmNum" name="confirmNum" type="text" class="form-control required">
-												</div>
-												<div class="col-lg-4" style="padding: 42px 0px 0px 13px; float:left;">
-													<button class="btn btn-primary" id="emailNoCheck" >인증번호 확인</button>
-												</div>
-
-									</div>
-										
-										
-
-								</fieldset>
+							<form action="signup" id = "form" method = "post">
 								<h1>회원정보입력</h1>
 								<fieldset style="margin-left: 20px; margin-right: 20px;">
 									<h2>필수 회원정보 입력</h2>
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label>이름 *</label> <input id="useName" name="useName"
+												<label>이름 *</label> <input id="usename" name="username"
 													type="text" class="form-control required">
 											</div>
 											<div class="form-group">
-												<label>비밀번호 *</label> <input id="userPw"
-													name="userPw" type="password" class="form-control required password">
+												<label>비밀번호 *</label> <input id="userpw"
+													name="userpw" type="password" class="form-control required password">
 											</div>
 											<div class="form-group">
-												<label>생년월일 *</label> <input id="userBirth"
-													name="userBirth" type="date" class="form-control required date">
+												<label>생년월일 *</label> <input id="userbirth"
+													name="userbirth" type="date" class="form-control required date">
 											</div>
 											<div class="form-group">
-												<label>전화번호 *</label> <input id="userPhone"
-													name=userPhone type="userPhone" class="form-control required number" placeholder="- 를 제외하고 숫자만 입력해주세요.">
+												<label>전화번호 *</label> <input id="userphone"
+													name=userphone type="number" class="form-control required number" placeholder="- 를 제외하고 숫자만 입력해주세요.">
 											</div>											
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 											<!-- 이 부분은 앞에 이메일 인증하면서 적은 값 가져오기 -->
 												<label>ID * <small>(이메일은 아이디로 사용됩니다.)</small></label> 
-												<input id="userId" name="userId"
-													type="email" class="form-control required email" readonly="readonly" value="11@11">
+												<input id="userid" name="userid"
+													type="email" class="form-control required email">
 											</div>
 											<div class="form-group">
 												<label>비밀번호 확인 *</label> 
-												<input id="userPwCheck" name="userPwCheck"
-													type="text" class="form-control required">
+												<input id="userpwcheck" name="userpwcheck"
+													type="password" class="form-control required">
 											</div>
 											<div class="form-group">
 												<label>주소 *</label> 
-												<input id="userAddress" name="userAddress"
+												<input id="useraddress" name="useraddress"
 													type="text" class="form-control required">
 											</div>
 											<div class="form-group">
 												<label>직업 *</label> 
 												
 												
-												<select id="userJob" name="userJob" class="form-control  required" >
+												<select id="userbelong" name="userbelong" class="form-control  required" >
 													    <option value="" selected="selected">직업선택</option>
 													    <option value="student">학생</option>
 													    <option value="company">회사원</option>
 													    <option value="order">기타</option>
 												</select>
-												
-												
-						                        
+											
 											</div>
+											
 										</div>
-									</div>
+										<br>
+                                
+								</div>
 								</fieldset>
-
-								<h1>서비스 조사</h1>
-								<fieldset style="margin-left: 20px; margin-right: 20px;">
-									<h2>선택 회원정보 입력</h2>
-									<p>서비스 품질 향상을 위한 간단한 조사입니다. 선택적으로 입력가능합니다.</p>
-						
-									
-									<table class="table table-boardered">
-                                 <tr>
-                                    
-                                 <tr>
-                                    <!-- 성별 입력 텍스트 -->
-                                    <th style="height: 50px;  vertical-align : middle; justify-content:center; margin: 0 auto;">성별</th>
-                                    <td style="vertical-align:middle; display:inline-flex;  width:100%; padding: 15px 8px;">
-                                    	<input type="radio" name="pollGender" value="M" onclick="hideRadioCheckMsg();">&nbsp;&nbsp;남&nbsp;&nbsp;&nbsp;
-                                       	<input type="radio" name="pollGender" value="F" onclick="hideRadioCheckMsg();">&nbsp;&nbsp;여&nbsp;&nbsp;
-                                       	<span id="chkGender" style="display: none; color: red;"></span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <!-- 연령대 입력 텍스트 -->
-                                    <th style="height: 50px; vertical-align:middle; justify-content:center;">연령대</th>
-                                    <td style="vertical-align : middle; display:inline-flex; width:100%; padding: 15px 8px;">
-                                    	<input type="radio" name="pollAge" value="10" onclick="hideRadioCheckMsg();">&nbsp;&nbsp;10대&nbsp;&nbsp;&nbsp;&nbsp;
-                                       	<input type="radio" name="pollAge" value="20" onclick="hideRadioCheckMsg();">&nbsp;&nbsp;20대&nbsp;&nbsp;&nbsp;&nbsp;
-                                       	<input type="radio" name="pollAge" value="30" onclick="hideRadioCheckMsg();">&nbsp;&nbsp;30대&nbsp;&nbsp;&nbsp;&nbsp;
-                                       	<input type="radio" name="pollAge" value="40" onclick="hideRadioCheckMsg();">&nbsp;&nbsp;40대&nbsp;&nbsp;&nbsp;&nbsp;
-                                       	<input type="radio" name="pollAge" value="50" onclick="hideRadioCheckMsg();">&nbsp;&nbsp;50대&nbsp;&nbsp;&nbsp;&nbsp;
-                                       	<input type="radio" name="pollAge" value="60" onclick="hideRadioCheckMsg();">&nbsp;&nbsp;60대&nbsp;&nbsp;&nbsp;&nbsp;
-                                       	<input type="radio" name="pollAge" value="70" onclick="hideRadioCheckMsg();">&nbsp;&nbsp;70대 이상&nbsp;&nbsp;&nbsp;&nbsp;
-                                       	<span id="chkAge" style="display: none; color: red;"></span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <!-- 관심분야 입력 텍스트 -->
-                                    <th style="height: 50px; vertical-align : middle;">관심 분야</th>
-                                    	<td style="vertical-align : middle;">
-                                    		<input type="checkbox" name="user_category" onclick="checkboxSelect('user_category',3)" value="1">&nbsp;&nbsp;전자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                    		<input type="checkbox" name="user_category" onclick="checkboxSelect('user_category',3)" value="2">&nbsp;&nbsp;통신&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    		<input type="checkbox" name="user_category" onclick="checkboxSelect('user_category',3)" value="3">&nbsp;&nbsp;예술&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                       		<input type="checkbox" name="user_category" onclick="checkboxSelect('user_category',3)" value="4">&nbsp;&nbsp;사회&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                       		<input type="checkbox" name="user_category" onclick="checkboxSelect('user_category',3)" value="5">&nbsp;&nbsp;이슈&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-                                       		<input type="checkbox" name="user_category" onclick="checkboxSelect('user_category',3)" value="6">&nbsp;&nbsp;교육&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                       		<input type="hidden" id="user_category1" name="user_category1" value="0"> 
-                                       		<input type="hidden" id="user_category2" name="user_category2" value="0"> 
-                                       		<input type="hidden" id="user_category3" name="user_category3" value="0">
-                                       </td>
-                                 </tr>
-                                 <tr>
-                                    <!-- 관심키워드 입력 텍스트 -->
-                                    <!-- <th style="height: 50px ; vertical-align : middle; width:150px !important;">관심 키워드</th> -->
-                                   	<th style=" width: 150px !important; height: 40px; vertical-align : middle;">관심 키워드</th>
-                                   	 <td style="display:inline-flex; vertical-align : middle; width: 100%;">
-                                    	<div class="col-lg-4">
-											<div class="form-group">
-												<input id="pollKeyword " name="pollKeyword" type="text" class="form-control">
-											</div>
-										</div>		
-										 <div class="col-lg-4">
-											<div class="form-group">
-												<input id="pollKeyword" name="pollKeyword" type="text" class="form-control">
-											</div>
-										</div>		
-										<div class="col-lg-4">
-											<div class="form-group">
-												<input id="pollKeyword" name="pollKeyword" type="text" class="form-control">
-											</div>
-										</div>		
-												
-                                    </td>
-                                 </tr>
-                               
-                              </table>
-             
-								</fieldset>
-
-								<h1>약관 동의</h1>
-								<fieldset style="margin-left: 20px; margin-right: 20px;">
-									<h2>이용약관</h2>
-									<p>BISION 서비스 이용약관 및 정보이용 안내에 대한 동의를 해주세요. 
-										<br> 회원가입시 작성한 정보는 회원에게 다양한 서비스를 제공하기 위해 사용되며, 회원탈퇴를 할 경우에는 회원과 관련된 데이터는 삭제됩니다.
-									</p>
-
- 									<input  id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> 
-									<label for="acceptTerms">이용약관에 동의합니다.</label>
-								</fieldset>
-							</form>
+								</form>
 						</div>
 					</div>
 					<p class="m-t" style="text-align: center;">

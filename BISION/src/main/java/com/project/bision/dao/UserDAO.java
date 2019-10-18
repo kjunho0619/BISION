@@ -16,4 +16,20 @@ public class UserDAO {
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		return mapper.loginCheck(vo);
 	}
+
+	public boolean signup(UserVO vo) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		
+		if(mapper.signup(vo) == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public void updatePayment(UserVO vo) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		mapper.updatePayment(vo);
+		
+	}
 }

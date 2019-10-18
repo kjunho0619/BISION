@@ -12,5 +12,16 @@
 		AND userid = #{userid}
 		AND userpw = #{userpw}
 	</select>
+	
+	<insert id="signup" parameterType="UserVO">
+		INSERT INTO bision_user(userid, username, userpw, userbirth, useraddress, userphone, userbelong, userdivision)
+		VALUES(#{userid},#{username},#{userpw},#{userbirth},#{useraddress},#{userphone},#{userbelong},1)
+	</insert>
+	
+	<update id="updatePayment" parameterType="UserVO">
+		UPDATE bision_user 
+		SET userdivision = '2' 
+		WHERE userid = #{userid}
+	</update>
 </mapper>
 

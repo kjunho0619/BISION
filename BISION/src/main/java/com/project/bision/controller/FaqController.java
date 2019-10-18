@@ -11,13 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class FaqController {
 	
 	@RequestMapping(value = "faqForm", method = {RequestMethod.GET,RequestMethod.POST})
-	public String faq(Locale locale, Model model) {
+	public String faq(String value, Model model) {
+		model.addAttribute("value", value);
 		return "faq";
-	}
-	
-	@RequestMapping(value = "qnaboard", method = {RequestMethod.GET,RequestMethod.POST})
-	public String qnaboard(Locale locale, Model model) {
-		return "qnaboard";
 	}
 	
 }

@@ -53,7 +53,7 @@
 	</select>
 	
 	<select id="getCpyNewsInfo" parameterType="CpyNewsInfoVO" resultType="CpyNewsInfoVO">
-		SELECT a.cpykeywordseq, a.cpykeyword, b.news_title, DBMS_LOB.SUBSTR(b.news_content,300) as news_content, b.news_image, b.news_date, b.byline, b.emtanalysis
+		SELECT b.news_no, a.cpykeywordseq, a.cpykeyword, b.news_title, DBMS_LOB.SUBSTR(b.news_content,300) as news_content, b.news_image, b.news_date, b.byline, b.emtanalysis
 		FROM cpykeyword a, cpynewsinfo b
 		WHERE 1=1
 		AND a.cpykeywordseq = b.cpykeywordseq
@@ -99,6 +99,56 @@
 		</choose>
 	</select>
 	
+	<select id="getDetailNews" parameterType="int" resultType="CpyNewsInfoVO">
+		SELECT news_no, cpykeywordseq, news_division, news_title, news_content, news_image, news_date, byline, emtanalysis
+		FROM cpynewsinfo a
+		WHERE 1=1
+		AND news_no = #{news_no}
+	</select>
 	
+	<select id="getCpyRliKeywordsearch" parameterType="map" resultType="CpyRliKeywordVO">
+		SELECT * 
+		FROM CpyRliKeyword
+		WHERE 1=1
+		AND cpykeywordseq = #{cpykeywordseq}
+		AND rlikeyword = #{rlikeyword}
+	</select>
+	
+	<select id="getCpyRliMonthCount" parameterType="map" resultType="CpyRliMonthCountVO">
+		SELECT b.cpyrlikeywordseq, b.pccount, b.mobilecount
+		FROM CpyRliKeyword a, CpyRliMonthCount b
+		WHERE 1=1
+        AND a.cpyrlikeywordseq = b.cpyrlikeywordseq
+		AND a.cpykeywordseq = #{cpykeywordseq}
+		AND b.cpyrlikeywordseq = #{cpyrlikeywordseq}
+	</select>
+	
+	<select id="getCpyRliGenderCount" parameterType="map" resultType="CpyRliGenderCountVO">
+        SELECT b.cpyrlikeywordseq, (b.malepcusercount +b.malemobileusercount) as malecount, (b.femalepcusercount + b.femalemobileusercount) as femalecount
+		FROM CpyRliKeyword a, CpyRliGenderCount b
+		WHERE 1=1
+        AND a.cpyrlikeywordseq = b.cpyrlikeywordseq
+		AND a.cpykeywordseq = #{cpykeywordseq}
+		AND b.cpyrlikeywordseq = #{cpyrlikeywordseq}
+	</select>
+	
+	<select id="getCpyRliAgeCount" parameterType="map" resultType="CpyRliAgeCountVO">
+        SELECT a.cpyrlikeywordseq, a.age, a.pcmonthcount, a.mobilemonthcount
+		FROM cpyrliagecount a, cpyrlikeyword b 
+		WHERE 1=1
+		AND a.cpyrlikeywordseq = b.cpyrlikeywordseq
+		AND b.cpykeywordseq = #{cpykeywordseq}
+        AND a.cpyrlikeywordseq = #{cpyrlikeywordseq}
+	</select>
+	
+	<select id="getCpyRliYearCount" parameterType="map" resultType="CpyRliYearCountVO">
+        SELECT a.cpyrlikeywordseq, to_char(a.month,'YYYY-MM') as month, (a.pcmonthcount + a.mobilemonthcount) as totalcount
+		FROM cpyrliyearcount a, cpyrlikeyword b 
+		WHERE 1=1
+		AND a.cpyrlikeywordseq = b.cpyrlikeywordseq
+		AND b.cpykeywordseq = 1
+		AND a.cpyrlikeywordseq = 3
+        ORDER BY to_char(a.month,'YYYY-MM')
+	</select>
 </mapper>
 
